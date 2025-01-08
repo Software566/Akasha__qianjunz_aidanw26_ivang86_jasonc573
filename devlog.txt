@@ -1,2 +1,8 @@
 aidanW -- 2024-01-06 21:44
 * Added team flag
+
+aidanW -- 2024-01-07 22:43
+* Added design document V0
+
+aidanW -- 2024-01-08 10:43
+* Added project file skeleton
