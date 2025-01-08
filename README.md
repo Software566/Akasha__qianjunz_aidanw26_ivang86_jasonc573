@@ -13,8 +13,7 @@
 
 ## Site Description
 
-Insert Site Description
-
+The Higher or Lower Game is played by comparing the popularity of Google searches. You will be presented with two choices and must guess which choice has a higher or lower number of searches on Google. This game draws from an API database of search statistics that offers various topics and categories to keep things interesting. Although this is playable without an account, they must create one to track their scores and compete against others. This simple yet addictive game is the perfect way to pass the time while keeping you updated with trending and popular topics. This is based on https://www.higherorlowergame.com/.
 ## Install Guide
 
 **Prerequisites**
