@@ -3,7 +3,7 @@
 
 ## Roster
 
-**Project Manager Frontend (CSS HTML):** Qianjun Ryan Zhou
+**Project Manager + Frontend (HTML and CSS):** Qianjun Ryan Zhou
 
 **Frontend (Javascript):** Ivan Gontchar
 
