@@ -13,3 +13,6 @@ aidanW -- 2024-01-09 00:27
     - Fixed various grammar/logical flaws
     - Added new diagrams + descriptions with required files for gamemodes
 * Updated README with new summary
+
+aidanW -- 2024-01-09 11:01
+* Created working Flask app
