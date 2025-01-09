@@ -13,7 +13,8 @@
 
 ## Site Description
 
-The Higher or Lower Game is played by comparing the popularity of Google searches. You will be presented with two choices and must guess which choice has a higher or lower number of searches on Google. This game draws from an API database of search statistics that offers various topics and categories to keep things interesting. Although this is playable without an account, they must create one to track their scores and compete against others. This simple yet addictive game is the perfect way to pass the time while keeping you updated with trending and popular topics. This is based on https://www.higherorlowergame.com/.
+Up or Nah is a game where users can choose between two options for various topics. There will be three modes: “Classic”, “Tournament”, and “Wild West.” Classic mode is a spin on “Higher or Lower” from higherorlowergame.com, where users choose the option with the higher search count on Google. After making a choice, the numbers are revealed with a fun animation. The game will end when one incorrect answer is made, and the goal is to get the largest streak possible. There will also be fun mods like a time limit for choosing an option, reverse mode (where the goal is to pick the lower-searched topic), and even grid mode, where there are more than two options! The tournament mode is a space where user-generated datasets are put together into a bracket to see the best content of that category (ex. Music, anime, etc). The Wild West mode is where chaos ensues, ranging from guessing the exact search count of a topic to the rules changing mid-game. Although this is playable without an account, one must track personal scores, compete with other users on the leaderboards, and contribute data sets. This simple yet addictive game is the perfect way to pass the time while keeping you updated with trending and popular topics. 
+
 ## Install Guide
 
 **Prerequisites**
