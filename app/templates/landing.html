@@ -1,0 +1,49 @@
+<!--
+Akasha: QianjunZhou, AidanWong, IvanGontchar, JasonChao
+SoftDev
+P02: Makers Makin' It, Act I
+2025-01-09
+Time Spent: 1
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>
+    <title>Landing Page</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="menu align-right margin-top-10">
+    
+          {% if logged_in %}
+          <div style="position: relative; display: inline-block;">
+            <input type="checkbox" id="dropdown-toggle2">
+            <label for="dropdown-toggle2">
+              <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
+            </label>
+    
+            <div class="dropdown-menu2">
+              <ul>
+                <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfpInside" class="pfpInside">
+                <h3>Hello {{ username }}</h3>
+                <a class="button" href="">Manage Account</a>
+                <hr> 
+                <a class="button alert" href="">Logout</a>
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if not logged_in %}
+            <div class="sign_in_btn">
+              <a class="button primary" href="" style="border-radius: 20px;">Sign In</a>
+            </div>
+          {% endif %}
+        </ul>
+    </nav>
+</body>
+</html>
