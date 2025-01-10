@@ -1,18 +1,15 @@
-aidanW -- 2024-01-06 21:44
+aidanW -- 2025-01-06 21:44
 * Added team flag
 
-aidanW -- 2024-01-07 22:43
+aidanW -- 2025-01-07 22:43
 * Added design document V0
 
-aidanW -- 2024-01-08 10:43
+aidanW -- 2025-01-08 10:43
 * Added project file skeleton
 
-aidanW -- 2024-01-09 00:27
+aidanW -- 2025-01-09 00:27
 * Updated Design Document to V1
     - Added Game Complexity with 3 new gamemodes
     - Fixed various grammar/logical flaws
     - Added new diagrams + descriptions with required files for gamemodes
 * Updated README with new summary
-
-aidanW -- 2024-01-09 11:01
-* Created working Flask app
