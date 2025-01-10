@@ -13,6 +13,3 @@ aidanW -- 2025-01-09 00:27
     - Fixed various grammar/logical flaws
     - Added new diagrams + descriptions with required files for gamemodes
 * Updated README with new summary
-
-jasonC -- 2025-01-10 10:49
-* Added database functions for initialization and user logins
