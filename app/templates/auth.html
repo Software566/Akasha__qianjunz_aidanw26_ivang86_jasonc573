@@ -1,0 +1,108 @@
+<!--
+Akasha: QianjunZhou, AidanWong, IvanGontchar, JasonChao
+SoftDev
+P02: Makers Makin' It, Act I
+2025-01-09
+Time Spent: 1
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+  <style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #202124; 
+}
+
+.login-container {
+    background: #fff; 
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #202124;
+}
+
+.login-container form {
+    margin-top: 1rem;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-container input[type="submit"] {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #1765c1;
+}
+
+.login-container a {
+    display: block;
+    margin-top: 1rem;
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+  </style>
+  <title>Sign up</title>
+</head>
+<body>
+  <div class="login-container">
+
+    <h1>Create Account</h1>
+    
+    <form action="/auth" method="POST">
+      <input type="text" name="username" placeholder={{Username}} autocomplete="off" disabled = "disabled">
+      <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+      <label>Age
+        <select name="ages">
+          {% for i in range(0, 100) %}
+          {% for j in range(0, 12) %}
+          {% for k in range(0, 32) %}
+          <option value= h>{{i}} years {{j}} months {{k}} days</option>
+          {% endfor %}
+          {% endfor %}
+          {% endfor %}
+        </select>
+      </label>
+      <div>
+      <input name="checkbox1" type="checkbox" checked> I don't agree to the terms and conditions
+      </div>
+      <div>
+        <input name="checkbox2" type="checkbox"> I agree to the terms and conditions
+        </div>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+</html>

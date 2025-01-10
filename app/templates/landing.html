@@ -23,11 +23,12 @@ Time Spent: 1
           <div style="position: relative; display: inline-block;">
             <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
           </div>
+          <a class="button alert" href="{{url_for('logout')}}">Logout</a>
           {% endif %}
           
           {% if not logged_in %}
             <div class="sign_in_btn">
-              <a class="button primary" href="" style="border-radius: 20px;">Sign In</a>
+              <a class="button primary" href="{{url_for('auth')}}" style="border-radius: 20px;">Sign In</a>
             </div>
           {% endif %}
         </ul>
