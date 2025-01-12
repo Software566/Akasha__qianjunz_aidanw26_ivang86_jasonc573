@@ -13,6 +13,10 @@ import datetime
 import string
 import random
 import uuid;
+import db_modules
+
+db_modules.create_database()
+
 
 app = Flask(__name__)
 app.secret_key = "secret hehe"
@@ -56,6 +60,7 @@ def auth():
         realage = request.form.get('ages').split("+")
         if(int(realage[0]) < 18):
             return render_template("auth.html", Username = lastusername, messages = "Please have a parent make an account for you since you are underaged")
+        db_modules.add_user(actualusername, password)
         session['username'] = username
         return redirect(url_for('landing'))
     updateusername()
