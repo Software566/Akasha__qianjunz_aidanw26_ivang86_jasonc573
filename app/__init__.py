@@ -25,6 +25,7 @@ app.secret_key = "secret hehe"
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
     if 'username' in session:
+        print("hello")
         return render_template("landing.html", logged_in = True, username = session['username'])
     return render_template("landing.html", logged_in = False)
 
@@ -78,7 +79,7 @@ def login():
         password = request.form['password']
         result = db_modules.login_user(username, password)
         if (result == "Login successful"):
-            session[username] = username
+            session['username'] = username
             return redirect(url_for('landing'))
         return render_template("login.html", message = result)
     return render_template("login.html")
