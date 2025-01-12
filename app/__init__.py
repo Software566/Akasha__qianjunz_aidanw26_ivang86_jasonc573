@@ -41,18 +41,22 @@ def auth():
         #    for k in username:
         #        if i == k:
         #            return render_template("auth.html", Username = lastusername)
-        session['username'] = username
         actualusername = lastusername.hex
         #print(lastusername.hex)
         for i in password:
             for k in actualusername:
                 if i == k:
                     return render_template("auth.html", Username = lastusername, messages = "Your password cannot contain any parts of your username")
-        print(request.form.get('ages'))
         if(request.form.get('checkbox1') == "on"):
+            return render_template("auth.html", Username = lastusername, messages = "Please don't disagree to the terms and conditions")
+        if(request.form.get('checkbox2') == None):
             return render_template("auth.html", Username = lastusername, messages = "Please agree to the terms and conditions")
-        print(request.form.get('checkbox1'))
-        print(request.form.get('checkbox2'))
+        #print(request.form.get('checkbox1'))
+        #print(request.form.get('checkbox2'))
+        realage = request.form.get('ages').split("+")
+        if(int(realage[0]) < 18):
+            return render_template("auth.html", Username = lastusername, messages = "Please have a parent make an account for you since you are underaged")
+        session['username'] = username
         return redirect(url_for('landing'))
     updateusername()
     return render_template("auth.html", Username = lastusername)

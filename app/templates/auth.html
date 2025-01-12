@@ -89,7 +89,7 @@ Time Spent: 1
           {% for i in range(0, 100) %}
           {% for j in range(0, 12) %}
           {% for k in range(0, 32) %}
-          <option value= h>{{i}} years {{j}} months {{k}} days</option>
+          <option value= {{i}}+{{j}}+{{k}}>{{i}} years {{j}} months {{k}} days</option>
           {% endfor %}
           {% endfor %}
           {% endfor %}
