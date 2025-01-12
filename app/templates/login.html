@@ -79,10 +79,10 @@ Time Spent: 1
 <body>
 	<div class="login-container">
 
-    <h1>Create Account</h1>
+    <h1>Login Page</h1>
     {{messages}}
     <form action="/auth" method="POST">
-      <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+      <input type="text" name="username" placeholder="Username (without -)" autocomplete="off" required>
       <input type="password" name="password" placeholder="Password" autocomplete="off" required>
       <input type="submit" value="Login">
     </form>

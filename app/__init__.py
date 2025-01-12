@@ -60,11 +60,28 @@ def auth():
         realage = request.form.get('ages').split("+")
         if(int(realage[0]) < 18):
             return render_template("auth.html", Username = lastusername, messages = "Please have a parent make an account for you since you are underaged")
-        db_modules.add_user(actualusername, password)
+        #result = db_modules.add_user(actualusername, password)
+        result = db_modules.add_user("a", password)
+        if (result == "Username already exists"):
+            return render_template("auth.html", Username = lastusername, messages = result)
         session['username'] = username
         return redirect(url_for('landing'))
     updateusername()
     return render_template("auth.html", Username = lastusername)
+
+@app.route("/login", methods = ['GET', 'POST'])
+def login():
+    if 'username' in session:
+        return redirect(url_for('landing'))
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        result = db_modules.login_user(username, password)
+        if (result == "Login successful"):
+            session[username] = username
+            return redirect(url_for('landing'))
+        return render_template("login.html", message = result)
+    return render_template("login.html")
 
 @app.route("/logout")
 def logout():
