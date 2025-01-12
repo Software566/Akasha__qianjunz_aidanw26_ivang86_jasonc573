@@ -87,12 +87,17 @@ Time Spent: 1
       <input type="password" name="password" placeholder="Password" autocomplete="off" required>
       <label>Age
         <select name="ages">
+          <!--
           {% for i in range(0, 100) %}
           {% for j in range(0, 12) %}
           {% for k in range(0, 32) %}
           <option value= {{i}}+{{j}}+{{k}}>{{i}} years {{j}} months {{k}} days</option>
           {% endfor %}
           {% endfor %}
+          {% endfor %}
+          --->
+          {% for i in range(0, 100) %}
+          <option value= {{i}}+10>{{i}} years</option>
           {% endfor %}
         </select>
       </label>
