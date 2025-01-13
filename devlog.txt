@@ -23,3 +23,7 @@ jasonC -- 2025-01-12 11:23
 
 aidanW -- 2025-01-12 23:18
 * Completed basic code and styling for main game
+
+ivanG -- 2025-01-13 1:54
+* did some very minor work on java script stuff that will be implemented
+* count up animation for number text, and timer
