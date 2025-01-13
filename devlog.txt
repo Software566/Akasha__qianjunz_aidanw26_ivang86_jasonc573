@@ -18,5 +18,5 @@ jasonC -- 2025-01-10 10:58
 * Created DB functions for user logins
 
 jasonC -- 2025-01-12 11:23
-* Added DB functions to retrieve all/user-specific game scores
+* Added DB functions to add & retrieve all/user-specific game scores
 * Updated and fixed problems with existing functions for logins

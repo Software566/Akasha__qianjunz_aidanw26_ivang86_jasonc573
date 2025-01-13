@@ -76,6 +76,13 @@ def login_user(username, password):
         return "Login successful"
     except sqlite3.IntegrityError:
         return "Invalid username or password"
+    
+def add_game_score(username, timestamp, position): # FIX THIS TOMORROW
+    conn = database_connect()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO game_scores (username, timestamp, position) VALUES (?, ?, ?)", (username, timestamp, position,))
+    conn.commit()
+    conn.close()
         
 def get_all_game_scores():
     conn = database_connect()
@@ -85,7 +92,7 @@ def get_all_game_scores():
     conn.close()
     return scores
 
-def get_specific_game_scores():
+def get_specific_game_scores(): # CHANGE THIS IF NEEDED
     conn = database_connect()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM game_scores WHERE username = ?", (session['username'],))
