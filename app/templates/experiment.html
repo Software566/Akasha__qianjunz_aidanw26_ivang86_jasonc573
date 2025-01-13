@@ -12,26 +12,27 @@
 
   <head>
     <meta charset="utf-8"/>
-    <title>The State of Animania</title>
+    <title>Experimental Feature Lab</title>
   </head>
 
   <style>
-    #playground { border: 1px solid black }
+    #timerArea { border: 1px solid black }
   </style>
 
-  <h1>expansion + contraction</h1>
+  <h1>Timer in progress</h1>
 
   <div>
-    <button id="circle">I'm an Animaniac!
+    <button id="circle">Start Timer
     </button>
 
-    <button id="stop">STOP
+    <button id="stop">Stop Timer
     </button>
   </div>
-  <canvas width="500" height="500" id="playground">
+  <canvas width="500" height="500" id="timerArea">
   </canvas>
+  <h1 id="timerText">30<h1>
 
-  <script src="animate.js"></script>
+  <script src="../static/js/timer.js"></script>
 
 </html>
 

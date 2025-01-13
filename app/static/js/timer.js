@@ -7,7 +7,7 @@
 //model for HTML5 canvas-based animation
 
 //access canvas and buttons via DOM
-var c = document.getElementById("playground");
+var c = document.getElementById("timerArea");
 var dotButton = document.getElementById( "circle" );
 var stopButton = document.getElementById( "stop" );
 
@@ -15,7 +15,7 @@ var stopButton = document.getElementById( "stop" );
 var ctx = c.getContext("2d");
 
 //set fill color to celine
-ctx.fillStyle = "#00ffff";
+ctx.fillStyle = "#FF0000";
 
 
 var requestID;
@@ -27,27 +27,25 @@ var clear = function(e)
 };
 
 
-var radius = 0;
-var growing = true;
+var radius = c.width / 2;
+var done = false;
 
-
+let start = performance.now();
 var drawDot = function()
 {
+  var textBox = document.getElementById("timerText");
   window.cancelAnimationFrame( requestID );
 
   ctx.clearRect( 0, 0, c.width, c.height );
 
-  if ( growing ) {
-	  radius += 1;
-  }
-  else {
-	  radius -= 1;
-  }
+  let curr = performance.now();
+  let elapsed = curr - start;
 
-  if ( radius == (c.width / 2) )
-	  growing = false;
-  else if ( radius == 0 ) {
-	  growing = true;
+  if ( radius == 0 ) {
+	  done = true;
+  }
+  else{
+    radius-=1;
   }
 
   //draw the dot
@@ -57,6 +55,10 @@ var drawDot = function()
   ctx.fill();
 
   requestID = window.requestAnimationFrame( drawDot );
+  if (done){
+    radius = c.width/2;
+    done = false;
+  }
 };
 
 
