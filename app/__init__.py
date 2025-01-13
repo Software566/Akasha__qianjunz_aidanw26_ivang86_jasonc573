@@ -13,7 +13,7 @@ import datetime
 import string
 import random
 import uuid;
-import app.CustomModules.db_modules as db_modules
+import CustomModules.db_modules as db_modules
 
 db_modules.create_database()
 

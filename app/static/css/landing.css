@@ -56,3 +56,106 @@ body {
     height: auto;
     margin-left: -20px;
 }
+
+/* For the More Button */
+
+input[type="checkbox"] { /* Keeps the checkbox hidden*/
+    display: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 14px;
+    margin-left: -100px;
+    margin-right: 10px;
+    right: -40px;
+    border-radius: 20px;
+}
+
+input[type="checkbox"]:checked + label + .dropdown-menu { /* Show dropdown on click*/
+    display: block;
+}
+
+/* For the Profile Button */
+
+.dropdown-menu2 {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 14px;
+    border-radius: 20px;
+    right: 10px;
+    width: 500px;
+    height: 350px;
+}
+
+input[type="checkbox"]:checked + label + .dropdown-menu2 { /* Show dropdown on click*/
+    display: block;
+}
+
+/* For Filters */
+
+.dropdown-menu3 {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    right: 10px;
+    width: 650px;
+    height: 300px;
+}
+
+input[type="checkbox"]:checked + label + .dropdown-menu3 { /* Show dropdown on click*/
+    display: block;
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between boxes */
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: auto;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-item label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-item input {
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.unit {
+    font-size: 0.9em;
+    color: #666;
+}
