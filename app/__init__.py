@@ -6,14 +6,14 @@ P02: Makers Makin' It, Act I
 Time Spent: 1
 """
 
-from flask import Flask, flash, render_template, request, redirect, url_for, session, flash
+from flask import Flask, flash, render_template, request, redirect, url_for, session, flash, jsonify
 import sqlite3
 import os
 import datetime
 import string
 import random
-import uuid;
-import app.CustomModules.db_modules as db_modules
+import uuid
+from CustomModules import api_modules, db_modules
 
 db_modules.create_database()
 
@@ -88,6 +88,25 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('landing'))
+
+@app.route("/game")
+def game():
+    return render_template("game.html")
+
+@app.route("/getGameInfo")
+def getGameInfo():
+    word1 = api_modules.getRandomSearch()
+    word2 = api_modules.getRandomSearch()
+
+    word1Amount = api_modules.getSearchVolume(word1)
+    word2Amount = api_modules.getSearchVolume(word2)
+
+    return jsonify({
+        'word1': word1,
+        'count1': word1Amount,
+        'word2': word2,
+        'count2': word2Amount
+    })
 
 if __name__ == "__main__":
     app.debug = True

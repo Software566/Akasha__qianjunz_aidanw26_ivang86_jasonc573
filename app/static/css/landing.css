@@ -13,46 +13,10 @@ body {
     margin-top: 14px;
 }
 
-.logo {
-    width: 700px;
-    height: auto;
-    margin-top: 100px;
-}
-
-.search-container {
-    margin-top: 10px;
-}
-
-.more {
-    width: 40px;
-    height: auto;
-    margin-top: 2px;
-    margin-left: -10px;
-}
-
 .pfp {
     width: 60px;
     height: auto;
     margin-top: 25px;
     margin-left: -15px;
     border-radius: 40px;
-}
-
-.pfpInside {
-    width: 100px;
-    height: auto;
-    margin-top: 25px;
-    margin-left: 175px;
-    border-radius: 40px;
-}
-
-.dropdown-menu2 h3 {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.filter {
-    width: 70px;
-    height: auto;
-    margin-left: -20px;
 }

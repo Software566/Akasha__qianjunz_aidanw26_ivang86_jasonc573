@@ -1,0 +1,63 @@
+body {
+    background-color: #202124;
+}
+
+.sign_in_btn {
+    padding: 10px 12px;
+    margin: 14px 18px 12px -20px;
+    min-width: 85px;
+}
+
+.nav-right-items {
+    padding: 10px 12px;
+    margin-top: 14px;
+}
+
+.pfp {
+    width: 60px;
+    height: auto;
+    margin-top: 25px;
+    margin-left: -15px;
+    border-radius: 40px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Full-page layout minus navbar */
+}
+.word-button {
+    flex: 1;
+    margin: 0 10px;
+    padding: 40px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: #007bff; 
+    color: #fff; 
+}
+.word-button.correct {
+    background-color: #28a745; 
+    color: white;
+}
+.word-button.wrong {
+    background-color: #dc3545; 
+    color: white;
+}
+.word-button.tie {
+    background-color: #ffc107; 
+    color: black; 
+}
+.word-button:hover {
+    opacity: 0.9;
+}
+.search-count {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ccc; /* Slightly lighter text for search counts */
+}
+

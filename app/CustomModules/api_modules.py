@@ -18,7 +18,7 @@ def getKey(apiName):
     else:
         return "INVALID API NAME"
 
-    keyFile = "../keys/" + apiFile
+    keyFile = "keys/" + apiFile
     with open(keyFile, "r") as keyFile:
         api_key = keyFile.read().strip()
         if api_key == "":
