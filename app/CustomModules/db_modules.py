@@ -1,15 +1,6 @@
-"""
-Akasha: QianjunZhou, AidanWong, IvanGontchar, JasonChao
-SoftDev
-P02: Makers Makin' It, Act I
-2025-01-09
-Time Spent: 1
-"""
-
-
 import sqlite3
 import os
-from flask import session, request
+from flask import session
 
 # creating path to database file
 DB_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'apis.db')
@@ -64,10 +55,7 @@ def add_user(username, password):
     try:
         conn = database_connect()
         cursor = conn.cursor()
-        cursor.execute('''
-                    INSERT INTO logins (username, password)
-                    VALUES (?, ?);
-                    ''', (username, password))
+        cursor.execute("INSERT INTO logins (username, password) VALUES (?, ?)", (username, password,))
         conn.commit()
     except sqlite3.IntegrityError:
         return "Username already exists"
@@ -79,19 +67,29 @@ def login_user(username, password):
     conn = database_connect()
     cursor = conn.cursor()
     try:
-        cursor.execute('''SELECT * FROM logins WHERE username=? AND password=?;''', (username, password))
+        cursor.execute('SELECT password FROM logins WHERE username = ?', (username,))
+        db_password = cursor.fetchone()[0]
+        if password != db_password:
+            return "Invalid username or password"
+        
         conn.close()
         return "Login successful"
     except sqlite3.IntegrityError:
         return "Invalid username or password"
         
-def get_game_scores():
+def get_all_game_scores():
     conn = database_connect()
     cursor = conn.cursor()
-    cursor.execute('''
-                SELECT * FROM game_scores
-                ORDER BY position ASC;
-                ''')
+    cursor.execute("SELECT * FROM game_scores ORDER BY position ASC")
     scores = cursor.fetchall()
     conn.close()
     return scores
+
+def get_specific_game_scores():
+    conn = database_connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM game_scores WHERE username = ?", (session['username'],))
+    scores = cursor.fetchall()
+    conn.close()
+    return scores
+
