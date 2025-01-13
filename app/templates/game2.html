@@ -1,27 +1,15 @@
-<!--
-Akasha: QianjunZhou, AidanWong, IvanGontchar, JasonChao
-SoftDev
-P02: Makers Makin' It, Act I
-2025-01-09
-Time Spent: 1
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>
-    <title>Landing Page</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/game.css')}}"/>
+    <title>Game</title>
 </head>
 <body>
     <nav class="navbar">
         <ul class="menu align-right margin-top-10">
-
-          <div class="nav-right-items grid-x">
-            <li><a href = "{{url_for('game')}}" style="color: white">Main Game</a></li>
-          </div>
     
           {% if logged_in %}
           <div style="position: relative; display: inline-block;">
@@ -36,11 +24,16 @@ Time Spent: 1
             </div>
           {% endif %}
         </ul>
-        <div class="text-center">
-          <a href="{{url_for('landing')}}">
-            <img src="/static/UpoNah2.png" alt="logo">
-          </a>
-        </div>
     </nav>
+    <div class="game-container">
+        {% for i in range(3) %}
+        <button id= button{{i}} class="word-button" onclick='makeGuess("{{i}}")'>
+            <div id=word{{i}}></div>
+            <div id=count{{i}} class="search-count"></div>
+        </button>
+        {% endfor %}
+    </div>
+
+    <script src="../static/js/game2.js"></script>
 </body>
 </html>

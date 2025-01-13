@@ -100,14 +100,20 @@ def getGameInfo():
 
     word1Amount = api_modules.getSearchVolume(word1)
     word2Amount = api_modules.getSearchVolume(word2)
+    '''
+    x=[]
+    for i in range(3):
+        x.append(api_modules.getRandomSearch())
+    for i in x:
+        x.append(api_modules.getSearchVolume(i))
+    return jsonify(x)
+    '''
+    x = {'word1': word1, 'count1': word1Amount, 'word2': word2, 'count2': word2Amount}
+    return jsonify(x)
 
-    return jsonify({
-        'word1': word1,
-        'count1': word1Amount,
-        'word2': word2,
-        'count2': word2Amount
-    })
-
+@app.route("/game2")
+def game2():
+    return render_template("game2.html")
 if __name__ == "__main__":
     app.debug = True
     app.run()
