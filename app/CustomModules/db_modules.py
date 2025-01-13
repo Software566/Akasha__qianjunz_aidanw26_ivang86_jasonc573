@@ -19,13 +19,13 @@ def create_database():
                     password TEXT NOT NULL
                 );
                 ''') 
-    """
+    
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS game_scores (
                     username TEXT,
-                    FOREIGN KEY (username) REFERENCES logins(username) ON DELETE CASCADE,
-                    timestamp TEXT DEFAULT NULL,
-                    position INTEGER
+                    timestamp TEXT NOT NULL,
+                    position INTEGER,
+                    FOREIGN KEY (username) REFERENCES logins(username) ON DELETE CASCADE
                 );
                 ''')
     
@@ -33,21 +33,20 @@ def create_database():
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     contributor TEXT,
-                    FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE,
-                    timestamp TEXT DEFAULT NULL,
-                )
+                    timestamp TEXT NOT NULL,
+                    FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE
+                );
                 ''')
     
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS individual (
                     id INTEGER,
-                    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE,
                     name TEXT NOT NULL,
                     image TEXT NOT NULL,
                     description TEXT NOT NULL,
+                    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
                 );
                 ''')
-    """
     conn.commit()
     conn.close()
 

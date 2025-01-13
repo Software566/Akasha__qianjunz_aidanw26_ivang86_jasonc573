@@ -27,3 +27,6 @@ aidanW -- 2025-01-12 23:18
 ivanG -- 2025-01-13 1:54
 * did some very minor work on java script stuff that will be implemented
 * count up animation for number text, and timer
+
+jasonC -- 2025-01-13 10:28
+* Fixed errors with creating DB tables
