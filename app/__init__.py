@@ -61,8 +61,8 @@ def auth():
         realage = request.form.get('ages').split("+")
         if(int(realage[0]) < 18):
             return render_template("auth.html", Username = lastusername, messages = "Please have a parent make an account for you since you are underaged")
-        #result = db_modules.add_user(actualusername, password)
-        result = db_modules.add_user("a", password)
+            
+        result = db_modules.add_user(actualusername, password)
         if (result == "Username already exists"):
             return render_template("auth.html", Username = lastusername, messages = result)
         session['username'] = username

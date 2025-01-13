@@ -18,6 +18,10 @@ Time Spent: 1
 <body>
     <nav class="navbar">
         <ul class="menu align-right margin-top-10">
+
+          <div class="nav-right-items grid-x">
+            <li><a href = "{{url_for('landing')}}" style="color: white">Main Game</a></li>
+          </div>
     
           {% if logged_in %}
           <div style="position: relative; display: inline-block;">
@@ -32,6 +36,11 @@ Time Spent: 1
             </div>
           {% endif %}
         </ul>
+        <div class="text-center">
+          <a href="{{url_for('landing')}}">
+            <img src="/static/UpoNah2.png" alt="logo">
+          </a>
+        </div>
     </nav>
 </body>
 </html>
