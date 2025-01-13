@@ -87,9 +87,6 @@ def getRandomSearch():
         print(f"Exception occurred: {e}")
         return 403
 
-print(getRandomSearch())
-
-
 
 ############################# SerpAPI #############################
 
