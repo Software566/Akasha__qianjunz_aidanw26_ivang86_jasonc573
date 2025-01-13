@@ -81,7 +81,7 @@ def login():
         if (result == "Login successful"):
             session['username'] = username
             return redirect(url_for('landing'))
-        return render_template("login.html", message = result)
+        return render_template("login.html", messages = result)
     return render_template("login.html")
 
 @app.route("/logout")
