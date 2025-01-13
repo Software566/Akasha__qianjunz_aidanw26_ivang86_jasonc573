@@ -16,31 +16,22 @@ Time Spent: 1
     <title>Landing Page</title>
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="menu align-right margin-top-10">
-
-          <div class="nav-right-items grid-x">
-            <li><a href = "{{url_for('game')}}" style="color: white">Main Game</a></li>
-          </div>
-    
-          {% if logged_in %}
-          <div style="position: relative; display: inline-block;">
-            <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
-          </div>
-          <a class="button alert" href="{{url_for('logout')}}">Logout</a>
-          {% endif %}
-          
-          {% if not logged_in %}
-            <div class="sign_in_btn">
-              <a class="button primary" href="{{url_for('auth')}}" style="border-radius: 20px;">Sign In</a>
-            </div>
-          {% endif %}
-        </ul>
-        <div class="text-center">
-          <a href="{{url_for('landing')}}">
+    <div class="text-center">
+        <a href="{{url_for('landing')}}">
             <img src="/static/UpoNah2.png" alt="logo">
-          </a>
+        </a>
+        
+        <br>
+        <a href="{{url_for('game')}}" class="nav_buttons button primary">Play</a>
+        <br>
+        {% if logged_in %}
+        <div style="position: relative; display: inline-block;">
+            <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
         </div>
-    </nav>
+        <a class="button alert" href="{{url_for('logout')}}">Logout</a>
+        {% else %}
+        <a class="nav_buttons button primary" href="{{url_for('auth')}}">Sign In</a>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -28,5 +28,6 @@ ivanG -- 2025-01-13 1:54
 * did some very minor work on java script stuff that will be implemented
 * count up animation for number text, and timer
 
-jasonC -- 2025-01-13 10:28
+jasonC -- 2025-01-13 11:01
 * Fixed errors with creating DB tables
+* Fixed landing page for better UI

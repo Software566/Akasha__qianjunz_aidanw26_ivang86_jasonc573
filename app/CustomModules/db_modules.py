@@ -50,6 +50,7 @@ def create_database():
     conn.commit()
     conn.close()
 
+# Add a new user login to the database
 def add_user(username, password):
     try:
         conn = database_connect()
@@ -62,12 +63,14 @@ def add_user(username, password):
         conn.close()
         return "User added successfully"
         
+# Login user
 def login_user(username, password):
     conn = database_connect()
     cursor = conn.cursor()
     try:
         cursor.execute('SELECT password FROM logins WHERE username = ?', (username,))
         db_password = cursor.fetchone()[0]
+        
         if password != db_password:
             return "Invalid username or password"
         
@@ -76,13 +79,15 @@ def login_user(username, password):
     except sqlite3.IntegrityError:
         return "Invalid username or password"
     
+# Add a new user to the database
 def add_game_score(username, timestamp, position): # FIX THIS TOMORROW
     conn = database_connect()
     cursor = conn.cursor()
     cursor.execute("INSERT INTO game_scores (username, timestamp, position) VALUES (?, ?, ?)", (username, timestamp, position,))
     conn.commit()
     conn.close()
-        
+
+# Retrieve all game scores in ascending order
 def get_all_game_scores():
     conn = database_connect()
     cursor = conn.cursor()
@@ -91,6 +96,7 @@ def get_all_game_scores():
     conn.close()
     return scores
 
+# Retrieve game score for a specific user
 def get_specific_game_scores(): # CHANGE THIS IF NEEDED
     conn = database_connect()
     cursor = conn.cursor()

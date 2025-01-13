@@ -2,10 +2,11 @@ body {
     background-color: #202124;
 }
 
-.sign_in_btn {
-    padding: 10px 12px;
-    margin: 14px 18px 12px -20px;
+.nav_buttons {
+    padding: 10px 10px;
+    margin: 14px 10px 12px -10px;
     min-width: 85px;
+    border-radius: 10px;
 }
 
 .nav-right-items {
