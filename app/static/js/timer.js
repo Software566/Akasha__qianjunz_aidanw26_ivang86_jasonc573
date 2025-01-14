@@ -40,8 +40,10 @@ var drawDot = function()
 
   let curr = performance.now();
   
-  let elapsed = curr - start;
+  let elapsed = (curr - start) / 1000;
   console.log(elapsed);
+
+  textBox.innerText = elapsed;
 
   if ( radius == 0 ) {
 	  done = true;
