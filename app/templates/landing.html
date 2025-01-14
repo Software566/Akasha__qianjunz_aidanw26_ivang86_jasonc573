@@ -13,7 +13,10 @@ Time Spent: 1
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>
-    <title>Landing Page</title>
+    <!--Importing custom font "Plus Jakarta Sans"-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">    <title>Landing Page</title>
 </head>
 <body>
     <div class="text-center">
@@ -21,12 +24,12 @@ Time Spent: 1
             <img src="/static/UpoNah2.png" alt="logo">
         </a>
         <br>
-        <a href="{{url_for('game')}}" class="nav_buttons button primary">Play</a>
+        <a href="{{url_for('game')}}" class="nav_buttons button">Play</a>
         <br>
         {% if logged_in %}
         <div class="pfp-container">
-            <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp" width="50">
-            <div class="dropdown">
+            <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
+            <div class="dropdown" style="">
                 <div class="view_profile_btn">
                     <a class="button primary" href="{{url_for('profile')}}">View Profile</a>
                   </div>
@@ -35,7 +38,7 @@ Time Spent: 1
             </div>
         </div>
         {% else %}
-        <a class="nav_buttons button primary" href="{{url_for('auth')}}">Sign In</a>
+        <a class="nav_buttons button" href="{{url_for('auth')}}">Sign In</a>
         {% endif %}
     </div>
     <script src="../static/js/landing.js"></script>
