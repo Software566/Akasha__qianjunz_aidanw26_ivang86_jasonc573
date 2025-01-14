@@ -39,7 +39,9 @@ var drawDot = function()
   ctx.clearRect( 0, 0, c.width, c.height );
 
   let curr = performance.now();
+  
   let elapsed = curr - start;
+  console.log(elapsed);
 
   if ( radius == 0 ) {
 	  done = true;
