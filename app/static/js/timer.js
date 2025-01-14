@@ -31,7 +31,7 @@ var radius = c.width / 2;
 var done = false;
 
 let start = -1;
-var drawDot = function()
+var timer = function()
 {
   if(start == -1){
     start = performance.now();
@@ -40,19 +40,13 @@ var drawDot = function()
 
   let curr = performance.now();
 
-  let elapsed = 10 - Math.trunc(((curr - start) / 1000));
+  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
   console.log(elapsed);
 
   textBox.innerText = elapsed;
 
-  //draw the dot
-  ctx.beginPath();
-  ctx.arc( c.width / 2, c.height / 2, radius, 0, 2 * Math.PI );
-  ctx.stroke();
-  ctx.fill();
-
-  requestID = window.requestAnimationFrame( drawDot );
-  if (done){
+  requestID = window.requestAnimationFrame( timer );
+  if (elapsed <= 0){
     console.log("DONE!!!");
     stopIt();
     return 0;
@@ -66,5 +60,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", drawDot );
+dotButton.addEventListener( "click", timer );
 stopButton.addEventListener( "click",  stopIt );
