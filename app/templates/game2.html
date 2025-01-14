@@ -10,14 +10,14 @@
 <body>
     <nav class="navbar">
         <ul class="menu align-right margin-top-10">
-    
+
           {% if logged_in %}
           <div style="position: relative; display: inline-block;">
             <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
           </div>
           <a class="button alert" href="{{url_for('logout')}}">Logout</a>
           {% endif %}
-          
+
           {% if not logged_in %}
             <div class="sign_in_btn">
               <a class="button primary" href="{{url_for('auth')}}" style="border-radius: 20px;">Sign In</a>
@@ -26,6 +26,12 @@
         </ul>
     </nav>
     <div class="game-container">
+      {% for i in mainData %}
+        <button id= {{mainData[i]["name"]}} class="word-button" onclick='makeGuess("{{i}}")'>
+            <div id={{mainData[i]["name"]}}></div>
+            <div id={{mainData[i]["max_net_worth"]}} class="search-count"></div>
+        </button>
+      {% endfor %}
     </div>
 
     <script src="../static/js/game2.js"></script>

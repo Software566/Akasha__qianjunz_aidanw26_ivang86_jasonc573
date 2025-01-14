@@ -26,7 +26,7 @@ def getKey(apiName):
         if api_key == "":
             return "KEY NOT FOUND"
         return api_key
-    
+
 ############################# GiphyAPI #############################
 
 def getGif(tag):
@@ -37,7 +37,7 @@ def getGif(tag):
         return 404
     if APIKEY == "INVALID API NAME":
         return 405
-    
+
     params = {
         "api_key": APIKEY,
         "tag": tag,
@@ -46,7 +46,7 @@ def getGif(tag):
 
     paramString = urlencode(params)
     url = f"https://api.giphy.com/v1/gifs/random?{paramString}"
-    headers = {'User-Agent': 'Mozilla/5.0'} 
+    headers = {'User-Agent': 'Mozilla/5.0'}
     request = urllib.request.Request(url, headers=headers)
 
     try:
@@ -56,11 +56,11 @@ def getGif(tag):
                 return {"link": data['data']['images']["original"]["url"], "title": data['data']['title']}
             else:
                 return "No gif found"
-    
+
     except Exception as e:
         print(f"Exception occurred: {e}")
         return 403
-    
+
 ############################# Datamuse #############################
 
 def getRandomSearch():
@@ -77,14 +77,14 @@ def getRandomSearch():
     paramString = urlencode(params)
     url = f"https://api.datamuse.com/words?{paramString}"
     print(url)
-    headers = {'User-Agent': 'Mozilla/5.0'} 
+    headers = {'User-Agent': 'Mozilla/5.0'}
     request = urllib.request.Request(url, headers=headers)
 
     try:
         with urllib.request.urlopen(request) as response:
             data = json.loads(response.read().decode('utf-8'))
             return data[random.randint(0, len(data) - 1)]["word"]
-    
+
     except Exception as e:
         print(f"Exception occurred: {e}")
         return 403
@@ -105,10 +105,10 @@ def getSearchVolume(keyword):
             "api_key": APIKEY,
             "q": keyword
         }
-    
+
     paramString = urlencode(params)
     url = f"https://serpapi.com/search?engine=google_trends&{paramString}"
-    headers = {'User-Agent': 'Mozilla/5.0'} 
+    headers = {'User-Agent': 'Mozilla/5.0'}
     request = urllib.request.Request(url, headers=headers)
 
 
@@ -120,7 +120,7 @@ def getSearchVolume(keyword):
                 return data["interest_over_time"]["timeline_data"][length - 1]["values"][0]["value"]
             else:
                 return "Error"
-    
+
     except Exception as e:
         print(f"Exception occurred: {e}")
         return 403
@@ -129,8 +129,11 @@ def getSearchVolume(keyword):
 
 def getTop30(maxNetWorth):
     APIKEY = 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'
+    #params = {
+    #        'max_net_worth': maxNetWorth,
+    #    }
     params = {
-            'max_net_worth': maxNetWorth,
+            'min_net_worth': maxNetWorth
         }
     paramString = urlencode(params)
     api_url = f"https://api.api-ninjas.com/v1/celebrity?{paramString}"
