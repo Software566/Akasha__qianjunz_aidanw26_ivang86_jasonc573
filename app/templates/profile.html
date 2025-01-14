@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/profile.css')}}"/>
+    <title>Profile</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="top-bar">
+          <div class="top-bar-left">
+            <a href="{{url_for('landing')}}">
+              <img src="/static/UpoNah2.png" alt="logo" class="logo">
+            </a>
+          </div>
+          <div style="position: relative; display: inline-block;">
+            <div class="pfp-container">
+              <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
+              <div class="dropdown">
+                <div class="view_profile_btn">
+                  <a class="button primary" href="{{url_for('profile')}}">View Profile</a>
+                </div>
+                <br>
+                <a href="{{url_for('logout')}}" class="alert button" >Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-pic">
+                <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="User Profile Picture">
+            </div>
+            <h1 class="user-name">{{ session['username'] }}</h1>
+            <p class="user-bio">Welcome to your profile page! Track your activity below.</p>
+            <div class="stats-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Statistic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Games Played</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>High Score</td>
+                            <td>10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Achievements</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/profile.js"></script>
+</body>
+</html>

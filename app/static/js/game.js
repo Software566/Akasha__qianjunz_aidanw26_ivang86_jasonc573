@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const pfpContainer = document.querySelector('.pfp-container');
+    const dropdown = document.querySelector('.dropdown');
+
+    pfpContainer.addEventListener('click', function () {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!pfpContainer.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+});
+
 async function getWordData() {
     const response = await fetch('http://127.0.0.1:5000/getGameInfo');
     const data = await response.json();

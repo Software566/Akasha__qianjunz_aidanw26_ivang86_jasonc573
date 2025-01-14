@@ -1,0 +1,145 @@
+body {
+    background-color: #202124;
+}
+
+.sign_in_btn {
+    padding: 10px 12px;
+    margin: 14px 18px 12px -20px;
+    min-width: 85px;
+}
+
+.top-bar {
+    background-color: #202124;
+}
+
+.nav-right-items {
+    padding: 10px 12px;
+    margin-top: 14px;
+}
+
+.pfp {
+    width: 60px;
+    height: auto;
+    margin-top: -25px;
+    margin-right: 100px;
+    border-radius: 40px;
+}
+
+.logo {
+    margin-top: 10px;
+    width: 100px;
+    height: auto;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: auto; 
+    min-width: 150px; 
+    padding: 15px;
+    margin-top: 10px;
+    transform: translateX(-85%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+.dropdown a {
+    display: block;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 16px; 
+    width: 100%; 
+    max-width: 150px; 
+    margin: 0 auto; 
+    text-decoration: none;
+    color: white;
+    background-color: #ff5733; 
+    border-radius: 5px; 
+    border: none;
+}
+
+.dropdown a:hover {
+    background-color: #e14d2a; 
+}
+.pfp-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202124;
+}
+
+.profile-card {
+    background: #333;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 30px;
+    max-width: 5000px;
+    height: 1000px;
+    width: 90%;
+    color: white;
+}
+
+.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #ff5733;
+    margin-bottom: 20px;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5733;
+    margin: 10px 0;
+}
+
+.user-bio {
+    font-size: 16px;
+    color: #ddd;
+    margin: 10px 0 20px;
+    line-height: 1.5;
+}
+
+.stats-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #444;
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.stats-table th {
+    background-color: #555;
+    color: #ff5733;
+    font-weight: bold;
+}
+
+.stats-table td {
+    border-top: 1px solid #666;
+}
+
+.stats-table tr:hover {
+    background-color: #555;
+}
+
