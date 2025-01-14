@@ -57,7 +57,7 @@ def add_user(username, password):
         cursor = conn.cursor()
         cursor.execute("INSERT INTO logins (username, password) VALUES (?, ?)", (username, password,))
         conn.commit()
-    except sqlite3.IntegrityError:
+    except:
         return "Username already exists"
     finally:
         conn.close()
@@ -76,7 +76,7 @@ def login_user(username, password):
         
         conn.close()
         return "Login successful"
-    except sqlite3.IntegrityError:
+    except:
         return "Invalid username or password"
     
 # Add a new user to the database

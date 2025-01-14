@@ -14,7 +14,7 @@ var stopButton = document.getElementById( "stop" );
 //prepare to interact with canvas in 2D
 var ctx = c.getContext("2d");
 
-//set fill color to celine
+//set fill color to red
 ctx.fillStyle = "#FF0000";
 
 
@@ -30,41 +30,32 @@ var clear = function(e)
 var radius = c.width / 2;
 var done = false;
 
-let start = performance.now();
-var drawDot = function()
+let start = -1;
+var timer = function()
 {
+  if(start == -1){
+    start = performance.now();
+  }
   var textBox = document.getElementById("timerText");
-  window.cancelAnimationFrame( requestID );
-
-  ctx.clearRect( 0, 0, c.width, c.height );
 
   let curr = performance.now();
-  
-  let elapsed = (curr - start) / 1000;
+
+  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
   console.log(elapsed);
 
   textBox.innerText = elapsed;
 
-  if ( radius == 0 ) {
-	  done = true;
-  }
-  else{
-    radius-=1;
-  }
-
-  //draw the dot
-  ctx.beginPath();
-  ctx.arc( c.width / 2, c.height / 2, radius, 0, 2 * Math.PI );
-  ctx.stroke();
-  ctx.fill();
-
-  requestID = window.requestAnimationFrame( drawDot );
-  if (done){
-    radius = c.width/2;
-    done = false;
+  requestID = window.requestAnimationFrame( timer );
+  if (elapsed <= 0){
+    console.log("DONE!!!");
+    stopIt();
+    return 0;
   }
 };
 
+var redir = function(){
+  window.location.replace("http://127.0.0.1:5000/profile");
+};
 
 var stopIt = function()
 {
@@ -72,5 +63,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", drawDot );
+dotButton.addEventListener( "click", redir );
 stopButton.addEventListener( "click",  stopIt );
