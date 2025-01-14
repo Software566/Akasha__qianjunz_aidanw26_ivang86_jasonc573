@@ -35,3 +35,7 @@ jasonC -- 2025-01-13 11:01
 aidanW -- 2025-01-13 22:35
 * Added styling for main game and nav bars
 * Created profile page and added styling
+
+jasonC -- 2025-01-14 10:49
+* Added button styling and element realignment in landing page
+* Updated DB functions to catch any errors instead of specific
