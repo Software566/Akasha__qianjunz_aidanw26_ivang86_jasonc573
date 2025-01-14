@@ -8,7 +8,9 @@ Time Spent: 1
 
 import urllib.request, json
 from urllib.parse import urlencode
+import urllib
 import random
+import requests
 
 def getKey(apiName):
     if apiName == "serpAPI":
@@ -122,3 +124,18 @@ def getSearchVolume(keyword):
     except Exception as e:
         print(f"Exception occurred: {e}")
         return 403
+
+############################# Ninjas #############################
+
+def getTop30(maxNetWorth):
+    APIKEY = 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'
+    params = {
+            'max_net_worth': maxNetWorth,
+        }
+    paramString = urlencode(params)
+    api_url = f"https://api.api-ninjas.com/v1/celebrity?{paramString}"
+    response = requests.get(api_url, headers={'X-Api-Key': APIKEY})
+    if response.status_code == requests.codes.ok:
+        return(response.text)
+    else:
+        return("Error:", response.status_code, response.text)
