@@ -36,6 +36,15 @@ aidanW -- 2025-01-13 22:35
 * Added styling for main game and nav bars
 * Created profile page and added styling
 
+ivanG 2025-01-14 7:25
+* worked further on timer and animation to go along
+* not functioning yet due to some bugs in logic, but very close
+
 jasonC -- 2025-01-14 10:49
 * Added button styling and element realignment in landing page
 * Updated DB functions to catch any errors instead of specific
+
+ivanG -- 2025-01-14 11:08
+* (in class) finished javascript timer, to be used in game, removed animation
+* found a way to redirecta user to a different page using javascript
+* read over current game code to later implement high score, and consequences based on game decision
