@@ -25,7 +25,6 @@ app.secret_key = "secret hehe"
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
     if 'username' in session:
-        print("hello")
         return render_template("landing.html", logged_in = True, username = session['username'])
     return render_template("landing.html", logged_in = False)
 
@@ -91,6 +90,8 @@ def logout():
 
 @app.route("/game")
 def game():
+    if 'username' in session:
+        return render_template("game.html", logged_in = True, username = session['username'])
     return render_template("game.html")
 
 @app.route("/getGameInfo")
@@ -114,6 +115,13 @@ def getGameInfo():
 @app.route("/game2")
 def game2():
     return render_template("game2.html")
+
+@app.route("/profile")
+def profile():
+    if 'username' in session:
+        return render_template("profile.html", username = session['username'])
+    return redirect(url_for('profile'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
