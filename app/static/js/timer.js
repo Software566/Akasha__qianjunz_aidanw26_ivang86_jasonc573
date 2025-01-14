@@ -14,7 +14,7 @@ var stopButton = document.getElementById( "stop" );
 //prepare to interact with canvas in 2D
 var ctx = c.getContext("2d");
 
-//set fill color to celine
+//set fill color to red
 ctx.fillStyle = "#FF0000";
 
 
@@ -30,27 +30,20 @@ var clear = function(e)
 var radius = c.width / 2;
 var done = false;
 
-let start = performance.now();
+let start = -1;
 var drawDot = function()
 {
+  if(start == -1){
+    start = performance.now();
+  }
   var textBox = document.getElementById("timerText");
-  window.cancelAnimationFrame( requestID );
-
-  ctx.clearRect( 0, 0, c.width, c.height );
 
   let curr = performance.now();
-  
-  let elapsed = (curr - start) / 1000;
+
+  let elapsed = 10 - Math.trunc(((curr - start) / 1000));
   console.log(elapsed);
 
   textBox.innerText = elapsed;
-
-  if ( radius == 0 ) {
-	  done = true;
-  }
-  else{
-    radius-=1;
-  }
 
   //draw the dot
   ctx.beginPath();
@@ -60,8 +53,9 @@ var drawDot = function()
 
   requestID = window.requestAnimationFrame( drawDot );
   if (done){
-    radius = c.width/2;
-    done = false;
+    console.log("DONE!!!");
+    stopIt();
+    return 0;
   }
 };
 
