@@ -53,6 +53,9 @@ var timer = function()
   }
 };
 
+var redir = function(){
+  window.location.replace("http://127.0.0.1:5000/profile");
+};
 
 var stopIt = function()
 {
@@ -60,5 +63,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", timer );
+dotButton.addEventListener( "click", redir );
 stopButton.addEventListener( "click",  stopIt );
