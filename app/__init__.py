@@ -130,7 +130,7 @@ def getGameInfo2():
         for k in range(randomAmount):
             if (random.randint(0, 29) == 5):
                 information.append({
-                    'name': i['name'],
+                    'name': i['name'].replace(" ", "_"),
                     'net_worth': i['net_worth']
                     }
                 )

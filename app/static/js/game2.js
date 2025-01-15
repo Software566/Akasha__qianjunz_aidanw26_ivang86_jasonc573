@@ -9,42 +9,45 @@ async function startGame() {
     var maxValue = -1;
     var valuedUsers = [];
     for (var i in listOfObjects){
+        document.getElementById('button' + per["name"]).classList.remove('correct', 'wrong')
+        document.getElementById(per["name"]).innerText = per["name"];
+        document.getElementById('worth' + per["name"]).innerText = "";
         var per = listOfObjects[i];
         if (per["net_worth"] > maxValue){
             maxValue = per["net_worth"];
             valuedUsers = [];
-            valuedUsers.push(per["name"])
+            valuedUsers.push(per["name"]);
         }
         else if (per["net_worth"] == maxValue){
-            valuedUsers.push(per["name"])
+            valuedUsers.push(per["name"]);
         }
     }
-    console.log(maxValue)
-    console.log(valuedUsers)
-    console.log(listOfObjects);
+    //console.log(maxValue)
+    //console.log(valuedUsers)
+    //console.log(listOfObjects);
+    window.correctAnswer = valuedUsers;
 }
 
 function makeGuess(guess) {
-    const correct = guess === window.correctAnswer;
-    const button1 = document.getElementById('button1');
-    const button2 = document.getElementById('button2');
-
-    if (window.correctAnswer === 0) {
-        button1.classList.add('tie');
-        button2.classlist.add('tie');
-        document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
-        document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
+    var listOfObjects = await getWordData();
+    var correct = window.correctAnswer
+    for (var i in listOfObjects){
+        var per = listOfObjects[i];
+        const button = document.getElementById("button" + per["name"]);
+        const worth = document.getElementById("worth" + per["name"]);
+        const name = document.getElementById(per["name"]);
+        var isValid = false;
+        for(var k in correct){
+            if (per["name"] == k){
+                isValid = true;
+                button.classList.add('correct');
+            }
+        }
+        if (!isValid){
+            button.classList.add('wrong')
+        }
+        worth.innerText = 'Wealth:' + per["net_worth"];
     }
-    else {
-        button1.classList.add(guess === 1 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 1 ? 'correct' : 'wrong'));
-        button2.classList.add(guess === 2 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 2 ? 'correct' : 'wrong'));
-
-        document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
-        document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
-    }
-
-    
-
     setTimeout(startGame, 3000);
 }
 
