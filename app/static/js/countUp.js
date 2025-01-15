@@ -20,6 +20,10 @@ ctx.fillStyle = "#FF0000";
 
 var requestID;
 
+function sleep (time){
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 var clear = function(e)
 {
   e.preventDefault();
@@ -33,19 +37,21 @@ var start = 0;
 
 var animate = function(e)
 {
-  var textBox = document.getElementById("timerText");
+  var textBox = document.getElementById("answerText");
   if(finished == -1){
     finished = textBox.innerText;
     console.log(finished);
   }
 
-  start++;
-  console.log(start);
-
   textBox.innerText = start;
 
+  start+= (finished / 200);
+  console.log(start);
+  sleep(1000);
+
+
   requestID = window.requestAnimationFrame( animate );
-  if (start >= finished){
+  if (start > finished){
     console.log("DONE!!!");
     stopIt();
     return 0;
@@ -58,5 +64,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", animate(100));
+dotButton.addEventListener( "click", animate(100000));
 stopButton.addEventListener( "click",  stopIt );
