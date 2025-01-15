@@ -95,7 +95,7 @@ Time Spent: 1
           {% endfor %}
           {% endfor %}
           {% endfor %}
-          --->
+          -->
           {% for i in range(0, 100) %}
           <option value= {{i}}+10>{{i}} years</option>
           {% endfor %}
@@ -109,6 +109,7 @@ Time Spent: 1
         </div>
       <input type="submit" value="Login">
       <a href= "{{url_for('login')}}"> <p>Go to Login Page</p> </a>
+      <a href= "{{url_for('landing')}}"> <p>Return</p> </a>
     </form>
   </div>
 </body>

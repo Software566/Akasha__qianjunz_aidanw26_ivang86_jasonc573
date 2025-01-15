@@ -11,21 +11,47 @@ Time Spent: 1
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>
     <!--Importing custom font "Plus Jakarta Sans"-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">    <title>Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">    <title>Landing Page</title> 
+    <!--Importing Foundation (FIX MODAL)-->    
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>   
+    <!-- Compressed JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="text-center">
         <a href="{{url_for('landing')}}">
             <img src="/static/UpoNah2.png" alt="logo">
         </a>
+
         <br>
-        <a href="{{url_for('game')}}" class="nav_buttons button">Play</a>
+        <!--
+        <button class="nav_buttons button" data-open="gameModal">Games</button>
+        <div class="reveal" id="gameModal" data-reveal>
+            <h1>Select Gamemode</h1>
+            <a href="{{url_for('game')}}" class="nav_buttons button">Play</a>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        -->
+        <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
+        <div class="reveal" id="exampleModal1" data-reveal>
+            <h1>Awesome. I Have It.</h1>
+            <p class="lead">Your couch. It is mine.</p>
+            <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
         <br>
+
         {% if logged_in %}
         <div class="pfp-container">
             <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">

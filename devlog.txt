@@ -56,3 +56,6 @@ ivanG -- 2025-01-15 07:54
 * made most of the number count up animation working
 * adjusts based on number size
 * will be refined super quickly, but mostly done
+
+jasonC -- 2025-01-15 11:02
+* Worked on adding modals to select gamemodes
