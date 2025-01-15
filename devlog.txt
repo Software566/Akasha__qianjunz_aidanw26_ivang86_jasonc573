@@ -48,3 +48,6 @@ ivanG -- 2025-01-14 11:08
 * (in class) finished javascript timer, to be used in game, removed animation
 * found a way to redirecta user to a different page using javascript
 * read over current game code to later implement high score, and consequences based on game decision
+
+aidanW -- 2025-01-15 00:03
+* Made celebrity API work
