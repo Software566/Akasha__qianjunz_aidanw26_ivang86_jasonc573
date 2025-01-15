@@ -35,7 +35,7 @@ var done = false;
 var finished = -1;
 var start = 0;
 
-var animate = function(e)
+var animate = function()
 {
   var textBox = document.getElementById("answerText");
   if(finished == -1){
@@ -43,17 +43,20 @@ var animate = function(e)
     console.log(finished);
   }
 
-  textBox.innerText = start;
+  textBox.innerText = start.toLocaleString();
 
-  start+= Math.trunc((finished / 270));
+  start+= Math.ceil((finished / (100)));
   console.log(start.toLocaleString());
-  sleep(1000);
+  // sleep(1000);
 
 
   requestID = window.requestAnimationFrame( animate );
   if (start > finished){
-    textBox.innerText = finished;
+    console.log("TRYING: " + finished.toLocaleString());
+    textBox.innerText = finished.toLocaleString();
+    console.log("HERE: " + textBox.innerText);
     console.log("DONE!!!");
+    console.log(textBox.innerText);
     stopIt();
     return 0;
   }
@@ -65,5 +68,6 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", animate(10000000));
-stopButton.addEventListener( "click",  stopIt );
+animate()
+// dotButton.addEventListener( "click", animate );
+// stopButton.addEventListener( "click",  stopIt );
