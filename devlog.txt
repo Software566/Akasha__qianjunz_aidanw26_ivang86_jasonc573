@@ -51,3 +51,8 @@ ivanG -- 2025-01-14 11:08
 
 aidanW -- 2025-01-15 00:03
 * Made celebrity API work
+
+ivanG -- 2025-01-15 07:54
+* made most of the number count up animation working
+* adjusts based on number size
+* will be refined super quickly, but mostly done
