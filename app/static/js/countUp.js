@@ -28,22 +28,24 @@ var clear = function(e)
 
 
 var done = false;
+var finished = -1;
+var start = 0;
 
 var animate = function(e)
 {
-  if(start == -1){
-    start = performance.now();
-  }
   var textBox = document.getElementById("timerText");
+  if(finished == -1){
+    finished = textBox.innerText;
+    console.log(finished);
+  }
 
+  start++;
+  console.log(start);
 
-  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
-  console.log(elapsed);
+  textBox.innerText = start;
 
-  textBox.innerText = elapsed;
-
-  requestID = window.requestAnimationFrame( timer );
-  if (elapsed <= 0){
+  requestID = window.requestAnimationFrame( animate );
+  if (start >= finished){
     console.log("DONE!!!");
     stopIt();
     return 0;
