@@ -46,7 +46,7 @@ var animate = function(e)
   textBox.innerText = start;
 
   start+= Math.trunc((finished / 270));
-  console.log(start);
+  console.log(start.toLocaleString());
   sleep(1000);
 
 
