@@ -6,6 +6,8 @@ P02: Makers Makin' It, Act I
 Time Spent: 1
 """
 
+#----------------------------------------------------------------------------------------------------------------
+
 from flask import Flask, flash, render_template, request, redirect, url_for, session, flash, jsonify
 import sqlite3
 import os
@@ -19,23 +21,28 @@ from CustomModules import api_modules, db_modules
 
 db_modules.create_database()
 
-
 app = Flask(__name__)
 app.secret_key = "secret hehe"
 #app.secret_key = os.urandom(32)
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Landing Page
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
     if 'username' in session:
         return render_template("landing.html", logged_in = True, username = session['username'])
     return render_template("landing.html", logged_in = False)
 
+#----------------------------------------------------------------------------------------------------------------
 
+# Function to update random username on register page
 def updateusername():
     global lastusername
     lastusername = uuid.uuid4()
     return 0
 
+# Authentication Page
 @app.route('/auth', methods = ['GET', 'POST'])
 def auth():
     if 'username' in session:
@@ -71,6 +78,7 @@ def auth():
     updateusername()
     return render_template("auth.html", Username = lastusername)
 
+# Login function
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
     if 'username' in session:
@@ -85,17 +93,28 @@ def login():
         return render_template("login.html", messages = result)
     return render_template("login.html")
 
+@app.route("/profile")
+def profile():
+    if 'username' in session:
+        return render_template("profile.html", username = session['username'])
+    return redirect(url_for('profile'))
+
+# Logout page
 @app.route("/logout")
 def logout():
     session.pop('username', None)
     return redirect(url_for('landing'))
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Classic game mode game page
 @app.route("/game")
 def game():
     if 'username' in session:
         return render_template("game.html", logged_in = True, username = session['username'])
     return render_template("game.html")
 
+# Function to get data for classic game mode
 @app.route("/getGameInfo")
 def getGameInfo():
     word1 = api_modules.getRandomSearch()
@@ -106,6 +125,8 @@ def getGameInfo():
 
     x = {'word1': word1, 'count1': word1Amount, 'word2': word2, 'count2': word2Amount}
     return jsonify(x)
+
+#----------------------------------------------------------------------------------------------------------------
 
 x = "goofy setup" #ignore this please its goofy
 
@@ -144,11 +165,22 @@ def getGameInfo2():
 def getGameInfoJson():
     return jsonify(x)
 
-@app.route("/profile")
-def profile():
-    if 'username' in session:
-        return render_template("profile.html", username = session['username'])
-    return redirect(url_for('profile'))
+#----------------------------------------------------------------------------------------------------------------
+
+@app.route("/thub")
+def thub():
+    return render_template("thub.html")
+
+@app.route("/tcreate")
+def tcreate():
+    return render_template("tcreate.html")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Game description
+@app.route("/gdesc")
+def gdesc():
+    return render_template("gdesc.html")
 
 if __name__ == "__main__":
     app.debug = True
