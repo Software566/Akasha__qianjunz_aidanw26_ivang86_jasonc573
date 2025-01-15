@@ -149,14 +149,18 @@ def getGameInfo2():
     information = []
     for i in result:
         for k in range(randomAmount):
+            imputed = False
             if (random.randint(0, 29) == 5):
+                imputed = True
                 information.append({
                     'name': i['name'].replace(" ", "_"),
                     'net_worth': i['net_worth']
                     }
                 )
+            if imputed:
+                break
     #print(information)
-    while (len(information) > 6):
+    while (len(information) > 5):
         information.pop()
     #print(information)
     return information
