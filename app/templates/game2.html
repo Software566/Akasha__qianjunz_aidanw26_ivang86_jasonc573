@@ -25,6 +25,14 @@
           {% endif %}
         </ul>
     </nav>
+    <div class="game-container">
+      {% for i in mainData %}
+        <button id= {{i["name"]}} class="word-button" onclick='makeGuess("{{i['name']}}")'>
+            <div id={{i["name"]}}></div>
+            <div id={{i["max_net_worth"]}} class="search-count"></div>
+        </button>
+      {% endfor %}
+    </div>
     <script src="../static/js/game2.js"></script>
 </body>
 </html>

@@ -107,9 +107,13 @@ def getGameInfo():
     x = {'word1': word1, 'count1': word1Amount, 'word2': word2, 'count2': word2Amount}
     return jsonify(x)
 
+x = "goofy setup" #ignore this please its goofy
+
 @app.route("/game2")
 def game2():
-    return render_template("game2.html", mainData = getGameInfo2())
+    global x
+    x = getGameInfo2()
+    return render_template("game2.html", mainData = x)
 
 @app.route("/getGameInfo2")
 def getGameInfo2():
@@ -119,48 +123,26 @@ def getGameInfo2():
         print("No data available or result is not a list.")
         return
 
-    randomAmount = 3 # Make it actually random
+    randomAmount = random.randint(3, 7) # Make it actually random
 
     information = []
-
-    for i in range(randomAmount):
-        randomChoice = result[random.randint(0, len(result) - 1)]
-        information.append({
-            'name': randomChoice['name'],
-            'net_worth': randomChoice['net_worth']
-        })
-
-    print(information)
-    # return information # For when its working
-
-
-    """
-    result = str(result)
-    result = result[2:-2]
-    result = result.split("}, {")
-    maindict = {}
-    count = 0
     for i in result:
-        i = i.replace('"', '')
-        i = i.split(":")
-        subdict = {}
-        #print(isinstance(i, list))
-        #print(i)
-        for k in range(len(i)-1):
-            if (k != 0 and k != (len(i) - 1)):
-                if(i[k].rsplit(",")[-1].strip() == "name" or i[k].rsplit(",")[-1].strip() == "net_worth"):
-                    subdict[i[k].rsplit(",")[-1].strip()] = i[k+1].split(",", 1)[0].strip()
-            elif (k == 0):
-                if(i[k].strip() == "name" or i[k].strip() == "net_worth"):
-                    subdict[i[k].strip()] = i[k+1].split(",", 1)[0].strip()
-            else:
-                if(i[k].rsplit(",")[-1].strip() == "name" or i[k].rsplit(",")[-1].strip() == "net_worth"):
-                    subdict[i[k].rsplit(",")[-1].strip()] = i[k+1].strip()
-        maindict[count] = subdict
-        count+=1
-    #print(maindict)
-    return maindict
-    """
+        for k in range(randomAmount):
+            if (random.randint(0, 29) == 5):
+                information.append({
+                    'name': i['name'],
+                    'net_worth': i['net_worth']
+                    }
+                )
+    #print(information)
+    while (len(information) > 6):
+        information.pop()
+    #print(information)
+    return information
+
+@app.route("/getGameInfoJson")
+def getGameInfoJson():
+    return jsonify(x)
 
 @app.route("/profile")
 def profile():
