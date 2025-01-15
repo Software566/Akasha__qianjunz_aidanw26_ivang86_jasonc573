@@ -49,6 +49,7 @@ var timer = function()
   if (elapsed <= 0){
     console.log("DONE!!!");
     stopIt();
+    window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     return 0;
   }
 };
@@ -63,5 +64,6 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
+timer();
 dotButton.addEventListener( "click", redir );
 stopButton.addEventListener( "click",  stopIt );

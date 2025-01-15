@@ -52,9 +52,10 @@ var animate = function()
 
   requestID = window.requestAnimationFrame( animate );
   if (start > finished){
-    console.log("TRYING: " + finished.toLocaleString());
+    finished = parseInt(finished);
+    // console.log("TRYING: " + finished.toLocaleString());
     textBox.innerText = finished.toLocaleString();
-    console.log("HERE: " + textBox.innerText);
+    // console.log("HERE: " + textBox.innerText);
     console.log("DONE!!!");
     console.log(textBox.innerText);
     stopIt();
