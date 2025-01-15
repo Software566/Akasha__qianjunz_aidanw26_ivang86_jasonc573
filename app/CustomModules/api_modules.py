@@ -126,11 +126,14 @@ def getSearchVolume(keyword):
 
 ############################# Ninjas #############################
 
-def randomTwo(category):
+def randomCategory(category):
     APIKEY = 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'
 
+    if category == "celebrity":
+        category = "celebrity?min_net_worth=1"
+
     url = f"https://api.api-ninjas.com/v1/{category}"
-    headers = {'User-Agent': 'Mozilla/5.0', 'X-API-KEY': 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'}
+    headers = {'User-Agent': 'Mozilla/5.0', 'X-Api-KEY': 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'}
     request = urllib.request.Request(url, headers=headers)
     print(url)
 
@@ -138,11 +141,9 @@ def randomTwo(category):
         with urllib.request.urlopen(request) as response:
             data = json.loads(response.read().decode('utf-8'))
             if data:
-                print(data)
+                return data
 
 
     except Exception as e:
         print (f"Exception occured: {e}")
         return 403
-
-print(randomTwo('celebrity'))
