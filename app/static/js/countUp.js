@@ -7,15 +7,15 @@
 //model for HTML5 canvas-based animation
 
 //access canvas and buttons via DOM
-var c = document.getElementById("playground");
+var c = document.getElementById("timerArea");
 var dotButton = document.getElementById( "circle" );
 var stopButton = document.getElementById( "stop" );
 
 //prepare to interact with canvas in 2D
 var ctx = c.getContext("2d");
 
-//set fill color to celine
-ctx.fillStyle = "#00ffff";
+//set fill color to red
+ctx.fillStyle = "#FF0000";
 
 
 var requestID;
@@ -27,38 +27,28 @@ var clear = function(e)
 };
 
 
-var radius = 0;
-var growing = true;
+var done = false;
 
-
-var drawDot = function()
+var animate = function(e)
 {
-  window.cancelAnimationFrame( requestID );
-
-  ctx.clearRect( 0, 0, c.width, c.height );
-
-  if ( growing ) {
-	  radius += 1;
+  if(start == -1){
+    start = performance.now();
   }
-  else {
-	  radius -= 1;
+  var textBox = document.getElementById("timerText");
+
+
+  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
+  console.log(elapsed);
+
+  textBox.innerText = elapsed;
+
+  requestID = window.requestAnimationFrame( timer );
+  if (elapsed <= 0){
+    console.log("DONE!!!");
+    stopIt();
+    return 0;
   }
-
-  if ( radius == (c.width / 2) )
-	  growing = false;
-  else if ( radius == 0 ) {
-	  growing = true;
-  }
-
-  //draw the dot
-  ctx.beginPath();
-  ctx.arc( c.width / 2, c.height / 2, radius, 0, 2 * Math.PI );
-  ctx.stroke();
-  ctx.fill();
-
-  requestID = window.requestAnimationFrame( drawDot );
 };
-
 
 var stopIt = function()
 {
@@ -66,5 +56,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", drawDot );
+dotButton.addEventListener( "click", animate(100));
 stopButton.addEventListener( "click",  stopIt );
