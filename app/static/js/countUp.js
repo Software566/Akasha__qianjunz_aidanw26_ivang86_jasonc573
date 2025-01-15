@@ -45,13 +45,14 @@ var animate = function(e)
 
   textBox.innerText = start;
 
-  start+= (finished / 200);
+  start+= Math.trunc((finished / 270));
   console.log(start);
   sleep(1000);
 
 
   requestID = window.requestAnimationFrame( animate );
   if (start > finished){
+    textBox.innerText = finished;
     console.log("DONE!!!");
     stopIt();
     return 0;
@@ -64,5 +65,5 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-dotButton.addEventListener( "click", animate(100000));
+dotButton.addEventListener( "click", animate(10000000));
 stopButton.addEventListener( "click",  stopIt );
