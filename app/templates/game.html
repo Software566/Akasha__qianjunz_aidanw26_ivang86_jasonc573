@@ -47,7 +47,11 @@
         <div id="word2">Word 2</div>
         <div id="count2" class="search-count">Loading</div>
     </button>
+    {% if timerOn %}
+      <h1 id="timerText">5<h1>
+    {% endif %}
   </div>
   <script src="../static/js/game.js"></script>
+  <script src="../static/js/timer.js"></script>
 </body>
 </html>

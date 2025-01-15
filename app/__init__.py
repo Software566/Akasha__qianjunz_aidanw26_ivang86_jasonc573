@@ -93,7 +93,7 @@ def logout():
 @app.route("/game")
 def game():
     if 'username' in session:
-        return render_template("game.html", logged_in = True, username = session['username'])
+        return render_template("game.html", timerOn = True, logged_in = True, username = session['username'])
     return render_template("game.html")
 
 @app.route("/getGameInfo")
