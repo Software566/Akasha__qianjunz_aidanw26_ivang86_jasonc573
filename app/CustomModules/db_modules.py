@@ -79,7 +79,7 @@ def login_user(username, password):
         return "Invalid username or password"
     
 # Add a new user to the database
-def add_game_score(username, timestamp, position): # FIX THIS TOMORROW
+def add_game_score(username, timestamp, position):
     conn = database_connect()
     cursor = conn.cursor()
     cursor.execute("INSERT INTO game_scores (username, timestamp, position) VALUES (?, ?, ?)", (username, timestamp, position,))

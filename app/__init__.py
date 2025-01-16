@@ -229,6 +229,12 @@ def tcreate():
 def gdesc():
     return render_template("gdesc.html")
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Losing screen
+@app.route("/lose")
+def lose():
+    return render_template("lose.html", score = 0, highscore = 5)
 if __name__ == "__main__":
     app.debug = True
     app.run()

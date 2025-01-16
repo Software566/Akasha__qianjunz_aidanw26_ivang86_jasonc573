@@ -67,3 +67,6 @@ aidanW -- 2025-01-15 23:45
 jasonC -- 2025-01-16 00:55
 * Completed modal for selecting gamemodes.
 * Utilized collapsible div element to show modded versions.
+
+jasonC -- 2025-01-16 11:01
+* Created losing page for the game.
