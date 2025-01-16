@@ -37,13 +37,15 @@ var start = 0;
 
 var animate = function()
 {
-  var textBox = document.getElementById("answerText");
+  var textBox = document.getElementById("count1");
   if(finished == -1){
     finished = textBox.innerText;
+    const ary = finished.split(" ");
+    finished = parseInt(ary[1]);
     console.log(finished);
   }
 
-  textBox.innerText = start.toLocaleString();
+  textBox.innerText = "Searches: " + start.toLocaleString();
 
   start+= Math.ceil((finished / (100)));
   console.log(start.toLocaleString());
@@ -54,7 +56,7 @@ var animate = function()
   if (start > finished){
     finished = parseInt(finished);
     // console.log("TRYING: " + finished.toLocaleString());
-    textBox.innerText = finished.toLocaleString();
+    textBox.innerText = "Searches: " + finished.toLocaleString();
     // console.log("HERE: " + textBox.innerText);
     console.log("DONE!!!");
     console.log(textBox.innerText);
@@ -63,12 +65,51 @@ var animate = function()
   }
 };
 
+
+var done1 = false;
+var finished1 = -1;
+var start1 = 0;
+
+var animate = function()
+{
+  var textBox = document.getElementById("count2");
+  if(finished == -1){
+    finished1 = textBox.innerText;
+    const ary = finished1.split(" ");
+    finished1 = parseInt(ary[1]);
+    console.log(finished1);
+  }
+
+  textBox.innerText = "Searches: " + start.toLocaleString();
+
+  start1+= Math.ceil((finished1 / (100)));
+  console.log(start1.toLocaleString());
+  // sleep(1000);
+
+
+  requestID = window.requestAnimationFrame( animate );
+  if (start1 > finished1){
+    finished1 = textBox.innerText;
+    const ary = finished1.split(" ");
+    finished1 = parseInt(ary[1]);
+    // console.log("TRYING: " + finished.toLocaleString());
+    textBox.innerText = "Searches: " + finished.toLocaleString();
+    // console.log("HERE: " + textBox.innerText);
+    console.log("DONE!!!");
+    console.log(textBox.innerText);
+    stopIt();
+    return 0;
+  }
+};
+
+
 var stopIt = function()
 {
   console.log( requestID );
   window.cancelAnimationFrame( requestID );
 };
 
-animate()
+animate();
+animate1();
 // dotButton.addEventListener( "click", animate );
 // stopButton.addEventListener( "click",  stopIt );
