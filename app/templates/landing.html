@@ -15,12 +15,9 @@ Time Spent: 1
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">    <title>Landing Page</title> 
-    <!--Importing Foundation (FIX MODAL)-->    
-    <!-- Compressed CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}"/>   
-    <!-- Compressed JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <!--Importing Bootstrap-->    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <!--Importing custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing.css')}}">
 </head>
 <body>
     <div class="text-center">
@@ -39,16 +36,49 @@ Time Spent: 1
             </button>
         </div>
         -->
-        <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
-        <div class="reveal" id="exampleModal1" data-reveal>
-            <h1>Awesome. I Have It.</h1>
-            <p class="lead">Your couch. It is mine.</p>
-            <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-            <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="nav_buttons btn" data-bs-toggle="modal" data-bs-target="#gameModal">Games</button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="gameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title w-100" id="modal-title" style="transform: translateX(1.55%);">Select Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div><button class="nav_buttons btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModes" aria-expanded="false" aria-controls="collapseModes">Modes</button></div>
+                    <div class="collapse" id="collapseModes" style="margin-bottom: 20px;">
+                        <div>
+                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Classic</a></button>
+                        </div>
+                        <div>
+                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Time Trial</a></button>
+                        </div>
+                        <div>
+                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Mania</a></button>
+                        </div>
+                        <div>
+                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Lower or Higher</a></button>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="dropdown">
+                        <a class="nav_buttons btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black; text-decoration: none;">Modes</a>
+                        <ul class="dropdown-menu">
+                            <li><button class="nav_buttons_smaller btn"><a class="dropdown-item" href="{{url_for('game')}}">Classic</a></button></li>
+                            <li><button class="nav_buttons_smaller btn"><a class="dropdown-item" href="{{url_for('game')}}">Time Trial</a></button></li>
+                            <li><button class="nav_buttons_smaller btn"><a class="dropdown-item" href="{{url_for('game')}}">Mania</a></button></li>
+                            <li><button class="nav_buttons_smaller btn"><a class="dropdown-item" href="{{url_for('game')}}">Lower or Higher</a></button></li>
+                        </ul>
+                    </div>
+                    -->
+                    <div><button type="button" class="nav_buttons btn"><a href="{{url_for('thub')}}" style="color: black; text-decoration: none;">Tournament</a></button></div>
+                </div>
+            </div>
+            </div>
         </div>
-
 
         <br>
 
@@ -64,9 +94,12 @@ Time Spent: 1
             </div>
         </div>
         {% else %}
-        <a class="nav_buttons button" href="{{url_for('auth')}}">Sign In</a>
+        <button class="nav_buttons btn"><a href="{{url_for('auth')}}" style="color: black; text-decoration: none;">Sign In</a></button>
         {% endif %}
     </div>
+
+    <!--JS Imports-->
     <script src="../static/js/landing.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -58,8 +58,12 @@ ivanG -- 2025-01-15 07:54
 * will be refined super quickly, but mostly done
 
 jasonC -- 2025-01-15 11:02
-* Worked on adding modals to select gamemodes
+* Worked on adding a modal to select gamemodes
 
 aidanW -- 2025-01-15 23:45
 * Created template and css for tournament game mode
 * Created database functions to store tournament setup information from modal window
+
+jasonC -- 2025-01-16 00:55
+* Completed modal for selecting gamemodes.
+* Utilized collapsible div element to show modded versions.
