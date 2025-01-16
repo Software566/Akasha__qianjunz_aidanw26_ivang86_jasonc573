@@ -135,7 +135,7 @@ def getGameInfo():
     return jsonify(x)
 
 #----------------------------------------------------------------------------------------------------------------
-
+'''
 x = "goofy setup" #ignore this please its goofy
 
 @app.route("/game2")
@@ -182,7 +182,39 @@ def indexof(list, value):
         return list.index(value)
     except ValueError:
         return -1
+'''
+@app.route("/game2")
+def game2():
+    return render_template("game2.html")
 
+@app.route("/getGameInfoJson")
+def getGameInfoJson():
+    result = api_modules.randomCategory('celebrity')
+
+    if not result or not isinstance(result, list): # Quick error handling
+        print("No data available or result is not a list.")
+        return
+
+    randomAmount = random.randint(3, 7) # Make it actually random
+
+    information = []
+    for i in result:
+        for k in range(randomAmount):
+            imputed = False
+            if (random.randint(0, 29) == 5):
+                imputed = True
+                information.append({
+                    'name': i['name'].replace(" ", "_"),
+                    'net_worth': i['net_worth']
+                    }
+                )
+            if imputed:
+                break
+    #print(information)
+    while (len(information) > 5):
+        information.pop()
+    #print(information)
+    return jsonify(information)
 #----------------------------------------------------------------------------------------------------------------
 
 # Define the upload folder path
