@@ -36,6 +36,16 @@
       {% endif %}
     </div>
 	</nav>
+  {% if timerOn %}
+  <div class="container">
+    <div class="line">
+      <div class="circle">
+        <h1>5</h1>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
   <div class="game-container">
     <button id="button1" class="word-button" onclick="makeGuess(1)">
         <img id="image1" src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="Word 1" style="margin-bottom: 20px;">
@@ -47,9 +57,9 @@
         <div id="word2">Word 2</div>
         <div id="answerText"><div id="count2" class="search-count">Loading</div></div>
     </button>
-    {% if timerOn %}
+    <!-- {% if timerOn %}
       <h1 style="color: white" id="timerText">5<h1>
-    {% endif %}
+    {% endif %} -->
   </div>
   <script src="../static/js/game.js"></script>
   <script src="../static/js/timer.js"></script>

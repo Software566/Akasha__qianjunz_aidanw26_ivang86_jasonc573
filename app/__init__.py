@@ -111,6 +111,14 @@ def logout():
 @app.route("/game")
 def game():
     if 'username' in session:
+        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'])
+    return render_template("game.html")
+
+
+# Time trial game mode game page
+@app.route("/timed")
+def timed():
+    if 'username' in session:
         return render_template("game.html", timerOn = True, logged_in = True, username = session['username'])
     return render_template("game.html")
 
@@ -220,7 +228,7 @@ def tcreate():
         return redirect(url_for("thub"))
 
     return render_template("tcreate.html")
-            
+
 
 #----------------------------------------------------------------------------------------------------------------
 
