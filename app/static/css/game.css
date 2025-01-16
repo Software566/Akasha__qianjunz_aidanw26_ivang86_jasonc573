@@ -120,7 +120,7 @@ body {
 .line {
   position: relative;
   width: 1900px;
-  height: 9px; 
+  height: 9px;
   background-color: white;
   margin: 0 auto;
   margin-bottom: 50px;
@@ -143,6 +143,6 @@ body {
 
 .circle h1 {
   margin: 0;
-  font-size: 50px; /* Adjust text size */
+  font-size: 70px; /* Adjust text size */
   color: black; /* Text color */
 }
