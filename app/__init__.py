@@ -169,6 +169,12 @@ def getGameInfo2():
 def getGameInfoJson():
     return jsonify(x)
 
+def indexof(list, value):
+    try:
+        return list.index(value)
+    except ValueError:
+        return -1
+
 #----------------------------------------------------------------------------------------------------------------
 
 # Define the upload folder path
