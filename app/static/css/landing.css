@@ -3,20 +3,50 @@ body {
 }
 
 .nav_buttons {
-    transition: 0.5s;
+    transition: 0.3s;
     font-family: "Plus Jakarta Sans", serif;
     font-weight: 700;
     font-size: 24px;
     background-color: beige;
     margin-bottom: 3%;
     color: black;
-    width: 15%;
+    width: 275px;
     border-radius: 4px;
 }
 
 .nav_buttons:hover {
-    transition: 0.3s;
+    transition: 0.15s;
     background-color: #fa775a;
+    scale: 1.1;
+}
+
+.nav_buttons:active {
+    transition: 0.15s;
+    background-color: #ff5733;
+    scale: 1.1;
+}
+
+.mode_buttons {
+    transition: 0.2s;
+    font-family: "Plus Jakarta Sans", serif;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: beige;
+    margin-bottom: 3%;
+    color: black;
+    width: 175px;
+    border-radius: 4px;
+}
+
+.mode_buttons:hover {
+    transition: 0.1s;
+    background-color: #fa775a;
+    scale: 1.05;
+}
+
+.mode_buttons:active {
+    transition: 0.15s;
+    background-color: #ff5733;
     scale: 1.1;
 }
 

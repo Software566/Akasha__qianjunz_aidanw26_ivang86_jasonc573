@@ -6,6 +6,8 @@ P02: Makers Makin' It, Act I
 Time Spent: 1
 """
 
+#----------------------------------------------------------------------------------------------------------------
+
 from flask import Flask, flash, render_template, request, redirect, url_for, session, flash, jsonify
 import sqlite3
 import os
@@ -19,23 +21,28 @@ from CustomModules import api_modules, db_modules
 
 db_modules.create_database()
 
-
 app = Flask(__name__)
 app.secret_key = "secret hehe"
 #app.secret_key = os.urandom(32)
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Landing Page
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
     if 'username' in session:
         return render_template("landing.html", logged_in = True, username = session['username'])
     return render_template("landing.html", logged_in = False)
 
+#----------------------------------------------------------------------------------------------------------------
 
+# Function to update random username on register page
 def updateusername():
     global lastusername
     lastusername = uuid.uuid4()
     return 0
 
+# Authentication Page
 @app.route('/auth', methods = ['GET', 'POST'])
 def auth():
     if 'username' in session:
@@ -71,6 +78,7 @@ def auth():
     updateusername()
     return render_template("auth.html", Username = lastusername)
 
+# Login function
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
     if 'username' in session:
@@ -85,17 +93,28 @@ def login():
         return render_template("login.html", messages = result)
     return render_template("login.html")
 
+@app.route("/profile")
+def profile():
+    if 'username' in session:
+        return render_template("profile.html", username = session['username'])
+    return redirect(url_for('profile'))
+
+# Logout page
 @app.route("/logout")
 def logout():
     session.pop('username', None)
     return redirect(url_for('landing'))
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Classic game mode game page
 @app.route("/game")
 def game():
     if 'username' in session:
         return render_template("game.html", timerOn = True, logged_in = True, username = session['username'])
     return render_template("game.html")
 
+# Function to get data for classic game mode
 @app.route("/getGameInfo")
 def getGameInfo():
     word1 = api_modules.getRandomSearch()
@@ -106,6 +125,8 @@ def getGameInfo():
 
     x = {'word1': word1, 'count1': word1Amount, 'word2': word2, 'count2': word2Amount}
     return jsonify(x)
+
+#----------------------------------------------------------------------------------------------------------------
 
 x = "goofy setup" #ignore this please its goofy
 
@@ -128,14 +149,18 @@ def getGameInfo2():
     information = []
     for i in result:
         for k in range(randomAmount):
+            imputed = False
             if (random.randint(0, 29) == 5):
+                imputed = True
                 information.append({
                     'name': i['name'].replace(" ", "_"),
                     'net_worth': i['net_worth']
                     }
                 )
+            if imputed:
+                break
     #print(information)
-    while (len(information) > 6):
+    while (len(information) > 5):
         information.pop()
     #print(information)
     return information
@@ -144,11 +169,65 @@ def getGameInfo2():
 def getGameInfoJson():
     return jsonify(x)
 
-@app.route("/profile")
-def profile():
+def indexof(list, value):
+    try:
+        return list.index(value)
+    except ValueError:
+        return -1
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Define the upload folder path
+UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'uploads')
+
+# Set the upload folder configuration
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Make sure the folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+@app.route("/thub")
+def thub():
     if 'username' in session:
-        return render_template("profile.html", username = session['username'])
-    return redirect(url_for('profile'))
+        return render_template("thub.html", logged_in = True)
+    return render_template("thub.html")
+
+@app.route("/tcreate", methods=['GET', 'POST'])
+def tcreate():
+    if request.method == "POST":
+        tournamentName = request.form.get("tournamentName")
+        description = request.form.get("tournamentDescription", "")
+
+        topics = []
+        for i in range(1, 9):
+            topic = f"topic{i}"
+            image = f"image{i}"
+
+            if topic in request.form:
+                topicName = request.form[topic]
+                image_file = request.files.get(image)
+                if image_file:
+                    # Ensure the upload folder exists
+                    imagePath = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
+                    image_file.save(imagePath)
+                    topics.append((topicName, imagePath))
+
+        # Add the tournament to the database
+        db_modules.add_tournament(tournamentName, description, topics)
+
+        flash("Tournament created successfully!")
+        return redirect(url_for("thub"))
+
+    return render_template("tcreate.html")
+            
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Game description
+@app.route("/gdesc")
+def gdesc():
+    return render_template("gdesc.html")
 
 if __name__ == "__main__":
     app.debug = True

@@ -61,3 +61,14 @@ ivanG -- 2025-01-15-11:01
 * finished both timer and count up animations in respective js files
 * branched to start working on implementing timer with in-game functionality
 * added timer to game page, css and layout is very ugly though, and only redirects to a rick-roll right now
+
+jasonC -- 2025-01-15 11:02
+* Worked on adding a modal to select gamemodes
+
+aidanW -- 2025-01-15 23:45
+* Created template and css for tournament game mode
+* Created database functions to store tournament setup information from modal window
+
+jasonC -- 2025-01-16 00:55
+* Completed modal for selecting gamemodes.
+* Utilized collapsible div element to show modded versions.
