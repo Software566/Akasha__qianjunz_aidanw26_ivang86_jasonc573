@@ -8,8 +8,8 @@
 
 //access canvas and buttons via DOM
 // var c = document.getElementById("timerArea");
-// var dotButton = document.getElementById( "circle" );
-// var stopButton = document.getElementById( "stop" );
+var but1 = document.getElementById( "button1" );
+var but2 = document.getElementById( "button2" );
 
 //prepare to interact with canvas in 2D
 // var ctx = c.getContext("2d");
@@ -65,5 +65,5 @@ var stopIt = function()
 };
 
 timer();
-// dotButton.addEventListener( "click", redir );
-// stopButton.addEventListener( "click",  stopIt );
+but1.addEventListener( "click", stopIt );
+but2.addEventListener( "click",  stopIt );
