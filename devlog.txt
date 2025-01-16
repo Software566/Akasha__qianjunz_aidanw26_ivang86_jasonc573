@@ -57,6 +57,11 @@ ivanG -- 2025-01-15 07:54
 * adjusts based on number size
 * will be refined super quickly, but mostly done
 
+ivanG -- 2025-01-15-11:01
+* finished both timer and count up animations in respective js files
+* branched to start working on implementing timer with in-game functionality
+* added timer to game page, css and layout is very ugly though, and only redirects to a rick-roll right now
+
 jasonC -- 2025-01-15 11:02
 * Worked on adding a modal to select gamemodes
 
@@ -67,3 +72,9 @@ aidanW -- 2025-01-15 23:45
 jasonC -- 2025-01-16 00:55
 * Completed modal for selecting gamemodes.
 * Utilized collapsible div element to show modded versions.
+
+ivanG -- 2025-01-16 2:01
+* Worked on implementing timer in a gamemode
+* Made the time trial button actually go to a specific page with timer activated
+* Gave the timer some pretty ugly/basic css, but still it's fine for now
+* Timer counts and activates, no loss page to redirect to yet, and it stops when an answer is clicked, but the game is bugged rn, so further testing required
