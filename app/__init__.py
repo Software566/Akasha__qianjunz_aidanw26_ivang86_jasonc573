@@ -197,15 +197,17 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 @app.route("/thub")
 def thub():
+    tournament_list = db_modules.get_tournaments();
     if 'username' in session:
-        return render_template("thub.html", logged_in = True)
-    return render_template("thub.html")
+        return render_template("thub.html", logged_in = True, tournaments = tournament_list)
+    return render_template("thub.html", tournaments = tournament_list)
 
 @app.route("/tcreate", methods=['GET', 'POST'])
 def tcreate():
     if request.method == "POST":
         tournamentName = request.form.get("tournamentName")
         description = request.form.get("tournamentDescription", "")
+        creator = session['username'].hex
 
         topics = []
         for i in range(1, 9):
@@ -222,9 +224,8 @@ def tcreate():
                     topics.append((topicName, imagePath))
 
         # Add the tournament to the database
-        db_modules.add_tournament(tournamentName, description, topics)
+        db_modules.add_tournament(tournamentName, description, creator, topics)
 
-        flash("Tournament created successfully!")
         return redirect(url_for("thub"))
 
     return render_template("tcreate.html")

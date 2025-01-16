@@ -45,64 +45,18 @@
                 <button class="button success" style="border-radius: 20px; margin-bottom: 30px;" data-open="createTournamentModal">Create Tournament</button>
                 {% endif %}
             </div>
-            
+
+            {% for tournament in tournaments %}
             <div class="cell small-14 medium-8 large-6">
                 <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
+                    <h3>{{ tournament[0] }}</h3>
+                    <p>{{tournament[1]}}</p>
+                    <p><strong>Contributer:</strong> {{ tournament[2]}} </p>
                     <p><strong>Created:</strong> Creation date</p>
                 </div>
             </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-            <div class="cell small-14 medium-8 large-6">
-                <div class="callout">
-                    <h3>Tournament 1</h3>
-                    <p>Description</p>
-                    <p><strong>Contributer:</strong> Username </p>
-                    <p><strong>Created:</strong> Creation date</p>
-                </div>
-            </div>
-        </div>
+            {% endfor %}
+
     </div>
 
     <div class="reveal" id="createTournamentModal" data-reveal>
