@@ -28,25 +28,24 @@ def create_database():
                     FOREIGN KEY (username) REFERENCES logins(username) ON DELETE CASCADE
                 );
                 ''')
-    
+    # contributor TEXT,
+    # timestamp TEXT NOT NULL,
+    # FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE
     cursor.execute('''
-                CREATE TABLE IF NOT EXISTS users (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    contributor TEXT,
-                    timestamp TEXT NOT NULL,
-                    FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE
-                );
-                ''')
-    
+                CREATE TABLE IF NOT EXISTS sum_tournament_data (
+                    id TEXT NOT NULL UNIQUE PRIMARY KEY,
+                    description TEXT
+        );
+    ''')
+
     cursor.execute('''
-                CREATE TABLE IF NOT EXISTS individual (
-                    id INTEGER,
+                CREATE TABLE IF NOT EXISTS individual_tournament_data (
+                    tournament_id TEXT NOT NULL,
                     name TEXT NOT NULL,
                     image TEXT NOT NULL,
-                    description TEXT NOT NULL,
-                    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
-                );
-                ''')
+                    FOREIGN KEY (tournament_id) REFERENCES sum_tournament_data(id) ON DELETE CASCADE
+        );
+    ''')
     conn.commit()
     conn.close()
 
@@ -105,3 +104,39 @@ def get_specific_game_scores(): # CHANGE THIS IF NEEDED
     conn.close()
     return scores
 
+# Retrieve active tournaments
+def get_tournaments():
+    conn = database_connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM sum_tournament_data")
+    data = cursor.fetchall()
+    conn.close()
+
+    data_dict = [dict(row) for row in data]
+
+    return data_dict
+
+# Add a tournament
+def add_tournament(tournament_name, description, topics):
+    conn = database_connect()
+    cursor = conn.cursor()
+
+    # Insert the tournament
+    cursor.execute(
+        "INSERT INTO sum_tournament_data (id, description) VALUES (?, ?)",
+        (tournament_name, description)
+    )
+    tournament_id = cursor.lastrowid
+
+    # Insert each topic
+    for topic, image in topics:
+        cursor.execute(
+            "INSERT INTO individual_tournament_data (tournament_id, name, image) VALUES (?, ?, ?)",
+            (tournament_id, topic, image)
+        )
+        print(f"Topic {topic} added with image path: {image}")
+
+    conn.commit()
+    conn.close()
+
+    return True

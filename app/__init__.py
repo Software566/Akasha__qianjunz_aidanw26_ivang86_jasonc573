@@ -171,13 +171,50 @@ def getGameInfoJson():
 
 #----------------------------------------------------------------------------------------------------------------
 
+# Define the upload folder path
+UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'uploads')
+
+# Set the upload folder configuration
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Make sure the folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
 @app.route("/thub")
 def thub():
+    if 'username' in session:
+        return render_template("thub.html", logged_in = True)
     return render_template("thub.html")
 
-@app.route("/tcreate")
+@app.route("/tcreate", methods=['GET', 'POST'])
 def tcreate():
+    if request.method == "POST":
+        tournamentName = request.form.get("tournamentName")
+        description = request.form.get("tournamentDescription", "")
+
+        topics = []
+        for i in range(1, 9):
+            topic = f"topic{i}"
+            image = f"image{i}"
+
+            if topic in request.form:
+                topicName = request.form[topic]
+                image_file = request.files.get(image)
+                if image_file:
+                    # Ensure the upload folder exists
+                    imagePath = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
+                    image_file.save(imagePath)
+                    topics.append((topicName, imagePath))
+
+        # Add the tournament to the database
+        db_modules.add_tournament(tournamentName, description, topics)
+
+        flash("Tournament created successfully!")
+        return redirect(url_for("thub"))
+
     return render_template("tcreate.html")
+            
 
 #----------------------------------------------------------------------------------------------------------------
 
