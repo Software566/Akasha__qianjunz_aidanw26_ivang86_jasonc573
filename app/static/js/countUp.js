@@ -37,6 +37,7 @@ var start = 0;
 
 var animate = function()
 {
+  console.log("STARTING ANIMATE");
   var textBox = document.getElementById("count1");
   if(finished == -1){
     finished = textBox.innerText;
@@ -45,7 +46,7 @@ var animate = function()
     console.log(finished);
   }
 
-  textBox.innerText = "Searches: " + start.toLocaleString();
+  textBox.innerText = "SEARCHES: " + start.toLocaleString();
 
   start+= Math.ceil((finished / (100)));
   console.log(start.toLocaleString());
@@ -56,8 +57,9 @@ var animate = function()
   if (start > finished){
     finished = parseInt(finished);
     // console.log("TRYING: " + finished.toLocaleString());
-    textBox.innerText = "Searches: " + finished.toLocaleString();
+    textBox.innerText = "SEARCHES: " + finished.toLocaleString();
     // console.log("HERE: " + textBox.innerText);
+    done = true;
     console.log("DONE!!!");
     console.log(textBox.innerText);
     stopIt();
@@ -72,6 +74,7 @@ var start1 = 0;
 
 var animate = function()
 {
+  console.log("STARTING ANIMATE1");
   var textBox = document.getElementById("count2");
   if(finished == -1){
     finished1 = textBox.innerText;
@@ -80,7 +83,7 @@ var animate = function()
     console.log(finished1);
   }
 
-  textBox.innerText = "Searches: " + start.toLocaleString();
+  textBox.innerText = "SEARCHES: " + start1.toLocaleString();
 
   start1+= Math.ceil((finished1 / (100)));
   console.log(start1.toLocaleString());
@@ -93,8 +96,9 @@ var animate = function()
     const ary = finished1.split(" ");
     finished1 = parseInt(ary[1]);
     // console.log("TRYING: " + finished.toLocaleString());
-    textBox.innerText = "Searches: " + finished.toLocaleString();
+    textBox.innerText = "SEARCHES: " + finished.toLocaleString();
     // console.log("HERE: " + textBox.innerText);
+    done1 = true;
     console.log("DONE!!!");
     console.log(textBox.innerText);
     stopIt();
@@ -109,7 +113,11 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-animate();
-animate1();
+while(!done){
+  animate();
+}
+while(!don1){
+  animate1();  
+}
 // dotButton.addEventListener( "click", animate );
 // stopButton.addEventListener( "click",  stopIt );
