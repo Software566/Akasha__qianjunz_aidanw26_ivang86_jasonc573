@@ -55,7 +55,6 @@ async function makeGuess(guess) {
         }
         worth.innerText = 'Wealth:' + per["net_worth"];
     }
-    setTimeout(startGame, 3000);
 }
 
 startGame();

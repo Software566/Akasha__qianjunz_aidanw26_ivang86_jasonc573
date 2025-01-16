@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/game.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/game2.css')}}"/>
     <title>Game</title>
 </head>
 <body>
@@ -26,12 +26,26 @@
         </ul>
     </nav>
     <div class="game-container">
-      {% for i in mainData %}
-      <button id= button{{i["name"]}} class="word-button" onclick='makeGuess("{{i['name']}}")'>
-          <div id={{i["name"]}}></div>
-          <div id=worth{{i["name"]}} class="search-count"></div>
-      </button>
-      {% endfor %}
+      <div class = "button-grid">
+        <div class = "button-row">
+        {% for i in mainData %}
+        <button id= button{{i["name"]}} class="word-button" onclick='makeGuess("{{i['name']}}")'>
+            <div id={{i["name"]}}></div>
+            <div id=worth{{i["name"]}} class="search-count"></div>
+        </button>
+        {% if mainData.index(i) == 2 %}
+        </div>
+        <br>
+        <div class = "button-row">
+        {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class = "center">
+    <form action={{url_for("game2")}}>
+      <button class="button-30" role="button" type = "submit"> Next Question</button>
+    </form>
     </div>
     <script src="../static/js/game2.js"></script>
 </body>
