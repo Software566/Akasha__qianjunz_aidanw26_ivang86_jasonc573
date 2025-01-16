@@ -7,6 +7,8 @@ async function getWordData() {
 
 async function startGame() {
     var listOfObjects = await getWordData();
+    
+    /*
     var maxValue = -1;
     var valuedUsers = [];
     for (var i in listOfObjects){
@@ -14,7 +16,7 @@ async function startGame() {
         //console.log(per["name"]);
         //console.log("button" + per["name"]);
         document.getElementById("button" + per["name"]).classList.remove('correct', 'wrong');
-        document.getElementById(per["name"]).innerText = per["name"];
+        document.getElementById(per["name"]).innerText = per["name"].replace("_", " ");
         document.getElementById('worth' + per["name"]).innerText = "";
         if (per["net_worth"] > maxValue){
             maxValue = per["net_worth"];
@@ -29,6 +31,7 @@ async function startGame() {
     console.log(valuedUsers);
     //console.log(listOfObjects);
     window.correctAnswer = valuedUsers;
+    */
 }
 
 async function makeGuess(guess) {
