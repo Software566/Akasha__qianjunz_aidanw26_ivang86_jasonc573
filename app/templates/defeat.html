@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/defeat.css')}}"/>
+    <title>Defeat</title>
+</head>
+<body>
+    <div class="defeat-container">
+        <div class="defeat-content">
+            <h1 class="defeat-title">Game Over</h1>
+            <p class="streak-text">Your Streak: <span class="streak-number">{{ streak }}</span></p>
+            <a href="{{ url_for('game') }}" class="play-again-button">Try Again</a>
+        </div>
+    </div>
+</body>
+</html>

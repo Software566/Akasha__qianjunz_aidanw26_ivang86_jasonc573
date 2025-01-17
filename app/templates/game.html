@@ -48,19 +48,20 @@
 
   <div class="game-container">
     <button id="button1" class="word-button" onclick="makeGuess(1)">
-        <img id="image1" src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="Word 1" style="margin-bottom: 20px;">
+        <img id="gif1" alt="Word 1" style="margin-bottom: 20px;">
         <div id="word1">Word 1</div>
         <div id="count1" class="search-count">Loading</div>
     </button>
     <button id="button2" class="word-button" onclick="makeGuess(2)">
-        <img id="image2" src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="Word 2" style="margin-bottom: 20px;">
+        <img id="gif2" alt="Word 2" style="margin-bottom: 20px;">
         <div id="word2">Word 2</div>
         <div id="count2" class="search-count">Loading</div>
     </button>
-    <!-- {% if timerOn %}
+    {% if timerOn %}
       <h1 style="color: white" id="timerText">5<h1>
-    {% endif %} -->
+    {% endif %}
   </div>
+  <div id="streak" style="color: white; font-size: 1.5em; margin: 20px;">Streak: 0</div>
   <script src="../static/js/game.js"></script>
   <script src="../static/js/timer.js"></script>
   <script src="../static/js/countUp.js"></script>

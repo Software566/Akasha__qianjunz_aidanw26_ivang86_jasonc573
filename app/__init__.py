@@ -110,8 +110,9 @@ def logout():
 # Classic game mode game page
 @app.route("/game")
 def game():
+    session['streak'] = 0  # Reset the streak
     if 'username' in session:
-        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'])
+        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'], streak=session['streak'])
     return render_template("game.html")
 
 
@@ -125,14 +126,32 @@ def timed():
 # Function to get data for classic game mode
 @app.route("/getGameInfo")
 def getGameInfo():
-    word1 = api_modules.getRandomSearch()
-    word2 = api_modules.getRandomSearch()
+
+    word1 = api_modules.randomTopic()
+    word2 = api_modules.randomTopic()
 
     word1Amount = api_modules.getSearchVolume(word1)
     word2Amount = api_modules.getSearchVolume(word2)
 
-    x = {'word1': word1, 'count1': word1Amount, 'word2': word2, 'count2': word2Amount}
+    word1Gif = api_modules.getGif(word1)
+    word2Gif = api_modules.getGif(word2)
+
+    print(word1Gif)
+    print(word2Gif)
+
+    x = {'word1': word1, 'count1': word1Amount, 'gif1': word1Gif,'word2': word2, 'count2': word2Amount, 'gif2': word2Gif}
     return jsonify(x)
+
+@app.route("/defeat")
+def defeat():
+    streak = session.get('streak', 0)  # Get the streak from session or default to 0
+    return render_template("defeat.html", streak=streak)
+
+@app.route('/save_streak', methods=['POST'])
+def save_streak():
+    data = request.json
+    session['streak'] = int(data.get('streak', 0))  # Save streak in Flask session
+    return jsonify({'success': True})
 
 #----------------------------------------------------------------------------------------------------------------
 '''
@@ -215,52 +234,6 @@ def getGameInfoJson():
         information.pop()
     #print(information)
     return jsonify(information)
-#----------------------------------------------------------------------------------------------------------------
-
-# Define the upload folder path
-UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'uploads')
-
-# Set the upload folder configuration
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Make sure the folder exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-@app.route("/thub")
-def thub():
-    tournament_list = db_modules.get_tournaments();
-    if 'username' in session:
-        return render_template("thub.html", logged_in = True, tournaments = tournament_list)
-    return render_template("thub.html", tournaments = tournament_list)
-
-@app.route("/tcreate", methods=['GET', 'POST'])
-def tcreate():
-    if request.method == "POST":
-        tournamentName = request.form.get("tournamentName")
-        description = request.form.get("tournamentDescription", "")
-        creator = session['username'].hex
-
-        topics = []
-        for i in range(1, 9):
-            topic = f"topic{i}"
-            image = f"image{i}"
-
-            if topic in request.form:
-                topicName = request.form[topic]
-                image_file = request.files.get(image)
-                if image_file:
-                    # Ensure the upload folder exists
-                    imagePath = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
-                    image_file.save(imagePath)
-                    topics.append((topicName, imagePath))
-
-        # Add the tournament to the database
-        db_modules.add_tournament(tournamentName, description, creator, topics)
-
-        return redirect(url_for("thub"))
-
-    return render_template("tcreate.html")
 
 
 #----------------------------------------------------------------------------------------------------------------
