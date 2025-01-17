@@ -3,7 +3,7 @@ import os
 from flask import session
 
 # creating path to database file
-DB_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'apis.db')
+DB_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'game.db')
 
 def database_connect():
     conn = sqlite3.connect(DB_PATH)
@@ -85,10 +85,10 @@ def get_all_game_scores():
     return scores
 
 # Retrieve game score for a specific user
-def get_specific_game_scores(): # CHANGE THIS IF NEEDED
+def get_specific_game_scores(username): # CHANGE THIS IF NEEDED
     conn = database_connect()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM game_scores WHERE username = ?", (session['username'],))
-    scores = cursor.fetchall()
+    cursor.execute("SELECT best_score FROM game_scores WHERE username = ?", (username,))
+    score = cursor.fetchone()
     conn.close()
-    return scores
+    return score

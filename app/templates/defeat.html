@@ -11,8 +11,14 @@
     <div class="defeat-container">
         <div class="defeat-content">
             <h1 class="defeat-title">Game Over</h1>
-            <p class="streak-text">Your Streak: <span class="streak-number">{{ streak }}</span></p>
-            <a href="{{ url_for('game') }}" class="play-again-button">Try Again</a>
+            {% if 'username' in session %}
+                <p class="streak-text" style="color: white;">Your Streak: <span class="streak-number">{{ streak }}</span></p>
+                <p class="streak-text" style="color: white;">Highest: <span class="streak-number">{{ highest }}</span></p>
+            {% else %}
+                <p class="streak-text" style="color: white;">Log in to save your streak.</p>
+            {% endif %}
+
+            <a href="{{ url_for('landing') }}" class="play-again-button">Try Again</a>
         </div>
     </div>
 </body>
