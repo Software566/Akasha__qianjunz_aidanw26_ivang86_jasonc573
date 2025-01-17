@@ -53,23 +53,29 @@ async function startGame() {
         window.searchCounts = { word1: count1, word2: count2 };
     }
 
+    timer();
 
 }
 
 function makeGuess(guess) {
+    stopIt();
     const correct = guess === window.correctAnswer;
     const button1 = document.getElementById('button1');
     const button2 = document.getElementById('button2');
 
     if (window.correctAnswer === 0) {
         button1.classList.add('tie');
-        button2.classList.add('tie');
+        button2.classlist.add('tie');
+        // animate('count1', window.searchCounts.word1);
+        // animate('count2', window.searchCounts.word2);
         document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
         document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
     } else {
         button1.classList.add(guess === 1 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 1 ? 'correct' : 'wrong'));
         button2.classList.add(guess === 2 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 2 ? 'correct' : 'wrong'));
 
+        // animate('count1', window.searchCounts.word1);
+        // animate('count2', window.searchCounts.word2);
         document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
         document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
     }
@@ -97,6 +103,41 @@ function makeGuess(guess) {
 
     setTimeout(startGame, 3000);
 }
+
+
+let start = -1;
+var timer = function()
+{
+  // console.log("TIMER HERE");
+  if(start == -1){
+    start = performance.now();
+  }
+  var textBox = document.getElementById("timerText");
+
+  let curr = performance.now();
+
+  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
+  console.log(elapsed);
+
+  textBox.innerText = elapsed;
+
+  requestID = window.requestAnimationFrame( timer );
+  if (elapsed <= 0){
+    console.log("DONE!!!");
+    stopIt();
+    window.location.replace("http://127.0.0.1:5000/defeat");
+    start = -1;
+    return 0;
+  }
+};
+
+
+var stopIt = function()
+{
+  start = -1;
+  console.log( requestID );
+  window.cancelAnimationFrame( requestID );
+};
 
 document.addEventListener('DOMContentLoaded', updateStreakDisplay);
 startGame();

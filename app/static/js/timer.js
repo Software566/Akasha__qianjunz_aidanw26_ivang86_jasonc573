@@ -49,7 +49,7 @@ var timer = function()
   if (elapsed <= 0){
     console.log("DONE!!!");
     stopIt();
-    window.location.replace("http://127.0.0.1:5000/lose");
+    window.location.replace("http://127.0.0.1:5000/defeat");
     return 0;
   }
 };
