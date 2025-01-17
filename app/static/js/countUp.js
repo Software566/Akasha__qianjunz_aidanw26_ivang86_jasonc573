@@ -35,15 +35,18 @@ var done = false;
 var finished = -1;
 var start = 0;
 
-var animate = function()
+var animate = function(id)
 {
-  var textBox = document.getElementById("answerText");
+  console.log("STARTING ANIMATE");
+  var textBox = document.getElementById(id);
   if(finished == -1){
     finished = textBox.innerText;
+    const ary = finished.split(" ");
+    finished = parseInt(ary[1]);
     console.log(finished);
   }
 
-  textBox.innerText = start.toLocaleString();
+  textBox.innerText = "SEARCHES: " + start.toLocaleString();
 
   start+= Math.ceil((finished / (100)));
   console.log(start.toLocaleString());
@@ -51,11 +54,12 @@ var animate = function()
 
 
   requestID = window.requestAnimationFrame( animate );
-  if (start > finished){
+  if (start >= finished){
     finished = parseInt(finished);
     // console.log("TRYING: " + finished.toLocaleString());
-    textBox.innerText = finished.toLocaleString();
+    textBox.innerText = "SEARCHES: " + finished.toLocaleString();
     // console.log("HERE: " + textBox.innerText);
+    done = true;
     console.log("DONE!!!");
     console.log(textBox.innerText);
     stopIt();
@@ -63,12 +67,14 @@ var animate = function()
   }
 };
 
+
 var stopIt = function()
 {
   console.log( requestID );
   window.cancelAnimationFrame( requestID );
 };
 
-animate()
+animate("count1");
+animate("count2");
 // dotButton.addEventListener( "click", animate );
 // stopButton.addEventListener( "click",  stopIt );

@@ -53,7 +53,7 @@ async function startGame() {
         window.searchCounts = { word1: count1, word2: count2 };
     }
 
-    
+
 }
 
 function makeGuess(guess) {

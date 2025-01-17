@@ -49,7 +49,7 @@ var timer = function()
   if (elapsed <= 0){
     console.log("DONE!!!");
     stopIt();
-    window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    window.location.replace("http://127.0.0.1:5000/lose");
     return 0;
   }
 };

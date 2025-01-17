@@ -50,12 +50,12 @@
     <button id="button1" class="word-button" onclick="makeGuess(1)">
         <img id="gif1" alt="Word 1" style="margin-bottom: 20px;">
         <div id="word1">Word 1</div>
-        <div id="answerText"><div id="count1" class="search-count">Loading</div></div>
+        <div id="count1" class="search-count">Loading</div>
     </button>
     <button id="button2" class="word-button" onclick="makeGuess(2)">
         <img id="gif2" alt="Word 2" style="margin-bottom: 20px;">
         <div id="word2">Word 2</div>
-        <div id="answerText"><div id="count2" class="search-count">Loading</div></div>
+        <div id="count2" class="search-count">Loading</div>
     </button>
     {% if timerOn %}
       <h1 style="color: white" id="timerText">5<h1>
@@ -63,5 +63,7 @@
   </div>
   <div id="streak" style="color: white; font-size: 1.5em; margin: 20px;">Streak: 0</div>
   <script src="../static/js/game.js"></script>
+  <script src="../static/js/timer.js"></script>
+  <script src="../static/js/countUp.js"></script>
 </body>
 </html>
