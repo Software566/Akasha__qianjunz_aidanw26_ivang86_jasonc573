@@ -47,48 +47,63 @@ async function startGame() {
             button.innerHTML = `
                 <img id="gif${wordIndex}" alt="Word ${wordIndex}" style="margin-bottom: 20px;">
                 <div id="word${wordIndex}">${gameData[key]}</div>
-                <div id="count${wordIndex}" class="search-count" >Loading</div>
+                <div id="count${wordIndex}" class="search-count">Loading</div>
             `;
-            button.addEventListener('click', () => makeGuess(wordIndex, gameData));
+            button.addEventListener('click', () => makeGuess(wordIndex));
 
             // Append to the game container
             gameContainer.appendChild(button);
             document.getElementById(`gif${wordIndex}`).src = gameData[`gif${wordIndex}`];
+            document.getElementById(`count${wordIndex}`).innerText = `Searches: ${gameData[`count${wordIndex}`]}`;
         }
     });
 
     // Initialize correct answer logic
     const wordCounts = Object.keys(gameData)
-        .filter(key => key.startsWith('count'))
-        .map(key => gameData[key]);
+    .filter(key => key.startsWith('count'))
+    .map(key => parseInt(gameData[key], 10));
+    console.log(wordCounts);
 
-    if (wordCounts[0] === wordCounts[1]) {
-        window.correctAnswer = 0;  // It's a tie
-    } else {
-        window.correctAnswer = wordCounts[0] > wordCounts[1] ? 1 : 2;
-        window.searchCounts = { word1: wordCounts[0], word2: wordCounts[1] };
+    // Find the maximum value in wordCounts
+    let maxValue = 0;
+    for (let i = 0; i < wordCounts.length; i++) {
+        if (wordCounts[i] > maxValue) {
+            maxValue = wordCounts[i];
+        }
     }
+
+    // Find the index of the word with the maximum count
+    const maxIndex = wordCounts.indexOf(maxValue) + 1; // Add 1 for 1-based index
+    if (maxIndex > 0) {
+        window.correctAnswer = maxIndex; // Set the correct answer index
+    } else {
+        window.correctAnswer = 0;  // In case of a tie (multiple max values)
+    }
+
+    // Store search counts dynamically
+    window.searchCounts = Object.keys(gameData)
+        .filter(key => key.startsWith('count'))
+        .reduce((acc, key, index) => {
+            acc[`word${index + 1}`] = gameData[key];
+            return acc;
+        }, {});
 }
 
-function makeGuess(guess, gameData) {
-    const correct = guess === window.correctAnswer;
 
-    // Reveal search counts after the guess is made
-    Object.keys(gameData).forEach((key, index) => {
-        if (key.startsWith('count')) {
-            const buttonIndex = key.replace('count', '');
-            document.getElementById(`count${buttonIndex}`).innerText = `Searches: ${gameData[key]}`;
-            document.getElementById(`count${buttonIndex}`).style.display = 'block';
-        }
-    });
+function makeGuess(guessIndex) {
+    const correct = guessIndex === window.correctAnswer;
 
-    // Apply classes to the buttons based on the user's guess
-    Object.keys(gameData).forEach((key, index) => {
-        if (key.startsWith('word')) {
-            const buttonIndex = key.replace('word', '');
-            const button = document.getElementById(`button${buttonIndex}`);
-            button.classList.add(guess === buttonIndex ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === buttonIndex ? 'correct' : 'wrong'));
-        }
+    // Loop through dynamically based on the number of words
+    const gameContainer = document.getElementById('game-container');
+    const buttons = gameContainer.getElementsByClassName('word-button');
+
+    Array.from(buttons).forEach((button, index) => {
+        const buttonIndex = index + 1; // Convert to 1-based index
+        button.classList.add(
+            guessIndex === buttonIndex
+                ? (correct ? 'correct' : 'wrong')
+                : (window.correctAnswer === buttonIndex ? 'correct' : 'wrong')
+        );
     });
 
     // Update streak based on the correctness of the guess
@@ -112,6 +127,7 @@ function makeGuess(guess, gameData) {
     updateStreakDisplay();
     setTimeout(startGame, 3000);
 }
+
 
 document.addEventListener('DOMContentLoaded', updateStreakDisplay);
 startGame();

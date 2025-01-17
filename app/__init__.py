@@ -121,7 +121,7 @@ def game():
 def timed():
     if 'username' in session:
         return render_template("game.html", timerOn = True, logged_in = True, username = session['username'])
-    return render_template("game.html")
+    return render_template("game.html", timerOn = True)
 
 # Function to get data for classic game mode
 @app.route("/getGameInfo")
