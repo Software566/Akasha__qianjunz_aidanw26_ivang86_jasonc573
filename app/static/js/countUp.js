@@ -35,10 +35,10 @@ var done = false;
 var finished = -1;
 var start = 0;
 
-var animate = function()
+var animate = function(id)
 {
   console.log("STARTING ANIMATE");
-  var textBox = document.getElementById("count1");
+  var textBox = document.getElementById(id);
   if(finished == -1){
     finished = textBox.innerText;
     const ary = finished.split(" ");
@@ -54,51 +54,12 @@ var animate = function()
 
 
   requestID = window.requestAnimationFrame( animate );
-  if (start > finished){
+  if (start >= finished){
     finished = parseInt(finished);
     // console.log("TRYING: " + finished.toLocaleString());
     textBox.innerText = "SEARCHES: " + finished.toLocaleString();
     // console.log("HERE: " + textBox.innerText);
     done = true;
-    console.log("DONE!!!");
-    console.log(textBox.innerText);
-    stopIt();
-    return 0;
-  }
-};
-
-
-var done1 = false;
-var finished1 = -1;
-var start1 = 0;
-
-var animate = function()
-{
-  console.log("STARTING ANIMATE1");
-  var textBox = document.getElementById("count2");
-  if(finished == -1){
-    finished1 = textBox.innerText;
-    const ary = finished1.split(" ");
-    finished1 = parseInt(ary[1]);
-    console.log(finished1);
-  }
-
-  textBox.innerText = "SEARCHES: " + start1.toLocaleString();
-
-  start1+= Math.ceil((finished1 / (100)));
-  console.log(start1.toLocaleString());
-  // sleep(1000);
-
-
-  requestID = window.requestAnimationFrame( animate );
-  if (start1 > finished1){
-    finished1 = textBox.innerText;
-    const ary = finished1.split(" ");
-    finished1 = parseInt(ary[1]);
-    // console.log("TRYING: " + finished.toLocaleString());
-    textBox.innerText = "SEARCHES: " + finished.toLocaleString();
-    // console.log("HERE: " + textBox.innerText);
-    done1 = true;
     console.log("DONE!!!");
     console.log(textBox.innerText);
     stopIt();
@@ -113,11 +74,7 @@ var stopIt = function()
   window.cancelAnimationFrame( requestID );
 };
 
-while(!done){
-  animate();
-}
-while(!don1){
-  animate1();  
-}
+animate("count1");
+animate("count2");
 // dotButton.addEventListener( "click", animate );
 // stopButton.addEventListener( "click",  stopIt );
