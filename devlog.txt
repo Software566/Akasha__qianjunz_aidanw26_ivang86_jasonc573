@@ -73,8 +73,14 @@ jasonC -- 2025-01-16 00:55
 * Completed modal for selecting gamemodes.
 * Utilized collapsible div element to show modded versions.
 
+jasonC -- 2025-01-16 11:01
+* Created losing page for the game.
+
 ivanG -- 2025-01-16 2:01
 * Worked on implementing timer in a gamemode
 * Made the time trial button actually go to a specific page with timer activated
 * Gave the timer some pretty ugly/basic css, but still it's fine for now
 * Timer counts and activates, no loss page to redirect to yet, and it stops when an answer is clicked, but the game is bugged rn, so further testing required
+
+aidanW -- 2025-01-16 11:01
+* Made tournament page dynamic

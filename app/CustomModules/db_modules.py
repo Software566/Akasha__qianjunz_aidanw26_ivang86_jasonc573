@@ -12,14 +12,14 @@ def database_connect():
 def create_database():
     conn = database_connect()
     cursor = conn.cursor()
-    
+
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS logins (
                     username TEXT NOT NULL UNIQUE PRIMARY KEY,
                     password TEXT NOT NULL
                 );
-                ''') 
-    
+                ''')
+
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS game_scores (
                     username TEXT,
@@ -28,13 +28,14 @@ def create_database():
                     FOREIGN KEY (username) REFERENCES logins(username) ON DELETE CASCADE
                 );
                 ''')
-    # contributor TEXT,
+    # ,
     # timestamp TEXT NOT NULL,
     # FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS sum_tournament_data (
                     id TEXT NOT NULL UNIQUE PRIMARY KEY,
-                    description TEXT
+                    description TEXT,
+                    contributor TEXT
         );
     ''')
 
@@ -61,7 +62,7 @@ def add_user(username, password):
     finally:
         conn.close()
         return "User added successfully"
-        
+
 # Login user
 def login_user(username, password):
     conn = database_connect()
@@ -69,17 +70,17 @@ def login_user(username, password):
     try:
         cursor.execute('SELECT password FROM logins WHERE username = ?', (username,))
         db_password = cursor.fetchone()[0]
-        
+
         if password != db_password:
             return "Invalid username or password"
-        
+
         conn.close()
         return "Login successful"
     except:
         return "Invalid username or password"
-    
+
 # Add a new user to the database
-def add_game_score(username, timestamp, position): # FIX THIS TOMORROW
+def add_game_score(username, timestamp, position):
     conn = database_connect()
     cursor = conn.cursor()
     cursor.execute("INSERT INTO game_scores (username, timestamp, position) VALUES (?, ?, ?)", (username, timestamp, position,))
@@ -112,19 +113,17 @@ def get_tournaments():
     data = cursor.fetchall()
     conn.close()
 
-    data_dict = [dict(row) for row in data]
-
-    return data_dict
+    return data
 
 # Add a tournament
-def add_tournament(tournament_name, description, topics):
+def add_tournament(tournament_name, description, contributor, topics):
     conn = database_connect()
     cursor = conn.cursor()
 
     # Insert the tournament
     cursor.execute(
-        "INSERT INTO sum_tournament_data (id, description) VALUES (?, ?)",
-        (tournament_name, description)
+        "INSERT INTO sum_tournament_data (id, description, contributor) VALUES (?, ?, ?)",
+        (tournament_name, description, contributor)
     )
     tournament_id = cursor.lastrowid
 

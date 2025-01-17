@@ -1,5 +1,3 @@
-
-
 .button-30 {
   align-items: center;
   appearance: none;
@@ -20,7 +18,7 @@
   padding-left: 16px;
   padding-right: 16px;
   position: relative;
-  text-align: left;
+  text-align: center;
   text-decoration: none;
   transition: box-shadow .15s,transform .15s;
   user-select: none;
@@ -30,7 +28,7 @@
   will-change: box-shadow,transform;
   font-size: 18px;
   align-items: center;
-  
+
 }
 
 .button-30:focus {
@@ -103,20 +101,20 @@ body {
     border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
-    background-color: #007bff; 
-    color: #fff; 
+    background-color: #007bff;
+    color: #fff;
 }
 .word-button.correct {
-    background-color: #28a745; 
+    background-color: #28a745;
     color: white;
 }
 .word-button.wrong {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     color: white;
 }
 .word-button.tie {
-    background-color: #ffc107; 
-    color: black; 
+    background-color: #ffc107;
+    color: black;
 }
 .word-button:hover {
     opacity: 0.9;
@@ -125,7 +123,7 @@ body {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #ccc; 
+    color: #ccc;
 }
 
 .dropdown {
@@ -133,8 +131,8 @@ body {
     position: absolute;
     top: 100%;
     left: 50%;
-    width: auto; 
-    min-width: 150px; 
+    width: auto;
+    min-width: 150px;
     padding: 15px;
     margin-top: 10px;
     transform: translateX(-85%);
@@ -148,19 +146,19 @@ body {
     display: block;
     padding: 12px 20px;
     text-align: center;
-    font-size: 16px; 
-    width: 100%; 
-    max-width: 150px; 
-    margin: 0 auto; 
+    font-size: 16px;
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
     text-decoration: none;
     color: white;
-    background-color: #ff5733; 
-    border-radius: 5px; 
+    background-color: #ff5733;
+    border-radius: 5px;
     border: none;
 }
 
 .dropdown a:hover {
-    background-color: #e14d2a; 
+    background-color: #e14d2a;
 }
 .pfp-container {
     position: relative;
@@ -171,8 +169,14 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);  /* 5 columns */
     gap: 10px;  /* spacing between buttons */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .button-grid .button-row {
     display: flex;
     gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

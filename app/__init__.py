@@ -135,7 +135,7 @@ def getGameInfo():
     return jsonify(x)
 
 #----------------------------------------------------------------------------------------------------------------
-
+'''
 x = "goofy setup" #ignore this please its goofy
 
 @app.route("/game2")
@@ -182,7 +182,39 @@ def indexof(list, value):
         return list.index(value)
     except ValueError:
         return -1
+'''
+@app.route("/game2")
+def game2():
+    return render_template("game2.html")
 
+@app.route("/getGameInfoJson")
+def getGameInfoJson():
+    result = api_modules.randomCategory('celebrity')
+
+    if not result or not isinstance(result, list): # Quick error handling
+        print("No data available or result is not a list.")
+        return
+
+    randomAmount = random.randint(3, 7) # Make it actually random
+
+    information = []
+    for i in result:
+        for k in range(randomAmount):
+            imputed = False
+            if (random.randint(0, 29) == 5):
+                imputed = True
+                information.append({
+                    'name': i['name'].replace(" ", "_"),
+                    'net_worth': i['net_worth']
+                    }
+                )
+            if imputed:
+                break
+    #print(information)
+    while (len(information) > 5):
+        information.pop()
+    #print(information)
+    return jsonify(information)
 #----------------------------------------------------------------------------------------------------------------
 
 # Define the upload folder path
@@ -197,15 +229,17 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 @app.route("/thub")
 def thub():
+    tournament_list = db_modules.get_tournaments();
     if 'username' in session:
-        return render_template("thub.html", logged_in = True)
-    return render_template("thub.html")
+        return render_template("thub.html", logged_in = True, tournaments = tournament_list)
+    return render_template("thub.html", tournaments = tournament_list)
 
 @app.route("/tcreate", methods=['GET', 'POST'])
 def tcreate():
     if request.method == "POST":
         tournamentName = request.form.get("tournamentName")
         description = request.form.get("tournamentDescription", "")
+        creator = session['username'].hex
 
         topics = []
         for i in range(1, 9):
@@ -222,9 +256,8 @@ def tcreate():
                     topics.append((topicName, imagePath))
 
         # Add the tournament to the database
-        db_modules.add_tournament(tournamentName, description, topics)
+        db_modules.add_tournament(tournamentName, description, creator, topics)
 
-        flash("Tournament created successfully!")
         return redirect(url_for("thub"))
 
     return render_template("tcreate.html")
@@ -237,6 +270,12 @@ def tcreate():
 def gdesc():
     return render_template("gdesc.html")
 
+#----------------------------------------------------------------------------------------------------------------
+
+# Losing screen
+@app.route("/lose")
+def lose():
+    return render_template("lose.html", score = 0, highscore = 5)
 if __name__ == "__main__":
     app.debug = True
     app.run()
