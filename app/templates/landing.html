@@ -69,12 +69,12 @@ Time Spent: 4
         {% if logged_in %}
         <div class="pfp-container">
             <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
-            <div class="dropdown" style="">
+            <div class="dropdown">
                 <div class="view_profile_btn">
-                    <a class="button primary" href="{{url_for('profile')}}">View Profile</a>
+                    <a class="btn btn-primary" href="{{url_for('profile')}}">View Profile</a>
                   </div>
                   <br>
-                <a href="{{url_for('logout')}}" class="alert button" >Logout</a>
+                <a href="{{url_for('logout')}}" class="btn btn-danger" >Logout</a>
             </div>
         </div>
         {% else %}
