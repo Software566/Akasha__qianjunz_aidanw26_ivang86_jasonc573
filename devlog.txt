@@ -84,3 +84,6 @@ ivanG -- 2025-01-16 2:01
 
 aidanW -- 2025-01-16 11:01
 * Made tournament page dynamic
+
+ivanG -- 2025-01-16 11:01
+* tried to implement count-up animation on the game pages, but not working tbh
