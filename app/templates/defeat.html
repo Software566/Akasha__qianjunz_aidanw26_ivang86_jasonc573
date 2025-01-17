@@ -8,11 +8,46 @@
     <title>Defeat</title>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="top-bar">
+          <div class="top-bar-left">
+            <a href="{{url_for('landing')}}">
+              <img src="/static/UpoNah2.png" alt="logo" class="logo">
+            </a>
+          </div>
+          {% if logged_in %}
+          <div style="position: relative; display: inline-block;">
+            <div class="pfp-container">
+              <img src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="pfp" class="pfp">
+              <div class="dropdown">
+                <div class="view_profile_btn">
+                  <a class="button primary" href="{{url_for('profile')}}">View Profile</a>
+                </div>
+                <br>
+                <a href="{{url_for('logout')}}" class="alert button" >Logout</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if not logged_in %}
+          <div class="sign_in_btn">
+            <a class="button primary" href="{{url_for('login')}}" style="border-radius: 20px;">Sign In</a>
+          </div>
+          {% endif %}
+        </div>
+    </nav>
+
     <div class="defeat-container">
         <div class="defeat-content">
             <h1 class="defeat-title">Game Over</h1>
-            <p class="streak-text">Your Streak: <span class="streak-number">{{ streak }}</span></p>
-            <a href="{{ url_for('game') }}" class="play-again-button">Try Again</a>
+            {% if 'username' in session %}
+                <p class="streak-text" style="color: white;">Your Streak: <span class="streak-number">{{ streak }}</span></p>
+                <p class="streak-text" style="color: white;">Highest: <span class="streak-number">{{ highest }}</span></p>
+            {% else %}
+                <p class="streak-text" style="color: white;">Log in to save your streak.</p>
+            {% endif %}
+
+            <a href="{{ url_for('landing') }}" class="play-again-button">Try Again</a>
         </div>
     </div>
 </body>

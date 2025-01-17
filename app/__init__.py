@@ -110,9 +110,9 @@ def logout():
 # Classic game mode game page
 @app.route("/game")
 def game():
-    session['streak'] = 0  # Reset the streak
     if 'username' in session:
-        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'], streak=session['streak'])
+        session.pop('streak', None)  # Reset the streak
+        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'])
     return render_template("game.html")
 
 
@@ -120,7 +120,8 @@ def game():
 @app.route("/timed")
 def timed():
     if 'username' in session:
-        return render_template("game.html", timerOn = True, logged_in = True, username = session['username'])
+        session['streak'] = 0  # Reset the streak
+        return render_template("game.html", timerOn = True, logged_in = True, username = session['username'], streak=session['streak'])
     return render_template("game.html", timerOn = True)
 
 # Function to get data for classic game mode
@@ -145,13 +146,20 @@ def getGameInfo():
 @app.route("/defeat")
 def defeat():
     streak = session.get('streak', 0)  # Get the streak from session or default to 0
-    best_score = db_modules.get_specific_game_scores()
     print(streak)
-    print(best_score)
-    if streak > best_score[0][2]:
-        db_modules.update_game_score(session['username'], streak)
-        print("score updated")
-    return render_template("defeat.html", streak=streak)
+    if 'username' in session:
+        best_score = db_modules.get_specific_game_scores(session['username'].hex)
+        print(best_score)
+        print(type(best_score))
+        if type(best_score) == tuple and streak > best_score[0]:
+            db_modules.update_game_score(session['username'].hex, streak)
+            print("score updated")
+            return render_template("defeat.html", streak=streak, highest = best_score[0])
+        else:
+            db_modules.add_game_score(session['username'].hex, streak)
+            print("score added")
+            return render_template("defeat.html", streak=streak, highest = streak)
+    return render_template("defeat.html", streak="Log in to save your score", highest = "Log in to save your score")
 
 @app.route('/save_streak', methods=['POST'])
 def save_streak():

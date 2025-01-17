@@ -92,6 +92,9 @@ ivanG -- 2025-01-17 00:15
 * fixed and implemented time trial mode
 * made it so timer waits for content to load, and stops upon guess
 
+aidanW -- 2025-01-17 1:49
+* Completed game2 and added navbar to every page + CSS every page
+
 ivanG -- 2025-01-17 02:12
 * added updated readme for KEYS
 * added updated design document
