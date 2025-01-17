@@ -53,10 +53,12 @@ async function startGame() {
         window.searchCounts = { word1: count1, word2: count2 };
     }
 
+    timer();
 
 }
 
 function makeGuess(guess) {
+    stopIt();
     const correct = guess === window.correctAnswer;
     const button1 = document.getElementById('button1');
     const button2 = document.getElementById('button2');
@@ -101,6 +103,39 @@ function makeGuess(guess) {
 
     setTimeout(startGame, 3000);
 }
+
+
+let start = -1;
+var timer = function()
+{
+  if(start == -1){
+    start = performance.now();
+  }
+  var textBox = document.getElementById("timerText");
+
+  let curr = performance.now();
+
+  let elapsed = 5 - Math.trunc(((curr - start) / 1000));
+  console.log(elapsed);
+
+  textBox.innerText = elapsed;
+
+  requestID = window.requestAnimationFrame( timer );
+  if (elapsed <= 0){
+    console.log("DONE!!!");
+    stopIt();
+    window.location.replace("http://127.0.0.1:5000/defeat");
+    start = -1;
+    return 0;
+  }
+};
+
+
+var stopIt = function()
+{
+  console.log( requestID );
+  window.cancelAnimationFrame( requestID );
+};
 
 document.addEventListener('DOMContentLoaded', updateStreakDisplay);
 startGame();
