@@ -106,13 +106,18 @@ function makeGuess(guess) {
 
 
 let start = -1;
+var requestID;
 var timer = function()
 {
-  // console.log("TIMER HERE");
+  console.log("TIMER HERE");
   if(start == -1){
     start = performance.now();
   }
   var textBox = document.getElementById("timerText");
+  if(textBox == null){
+    stopIt();
+    return 0;
+  }
 
   let curr = performance.now();
 
