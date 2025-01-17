@@ -50,6 +50,8 @@ function makeGuess(guess) {
     if (window.correctAnswer === 0) {
         button1.classList.add('tie');
         button2.classlist.add('tie');
+        // animate('count1', window.searchCounts.word1);
+        // animate('count2', window.searchCounts.word2);
         document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
         document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
     }
@@ -57,6 +59,8 @@ function makeGuess(guess) {
         button1.classList.add(guess === 1 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 1 ? 'correct' : 'wrong'));
         button2.classList.add(guess === 2 ? (correct ? 'correct' : 'wrong') : (window.correctAnswer === 2 ? 'correct' : 'wrong'));
 
+        // animate('count1', window.searchCounts.word1);
+        // animate('count2', window.searchCounts.word2);
         document.getElementById('count1').innerText = `Searches: ${window.searchCounts.word1}`;
         document.getElementById('count2').innerText = `Searches: ${window.searchCounts.word2}`;
     }
@@ -65,5 +69,38 @@ function makeGuess(guess) {
 
     setTimeout(startGame, 3000);
 }
+
+var done = false;
+var finished = -1;
+var start = 0;
+var animate = function(id, max)
+{
+  console.log("STARTING ANIMATE");
+  var textBox = document.getElementById(id);
+  if(finished == -1){
+    finished = max;
+    console.log(finished);
+  }
+
+
+  while((start >= finished)){
+    textBox.innerText = "SEARCHES: " + start.toLocaleString();
+
+    start+= Math.ceil((finished / (100)));
+    console.log(start.toLocaleString());
+    // sleep(1000);
+
+
+    requestID = window.requestAnimationFrame( animate );
+  }
+  textBox.innerText = "SEARCHES: " + finished.toLocaleString();
+  // console.log("HERE: " + textBox.innerText);
+  done = true;
+  console.log("DONE!!!");
+  console.log(textBox.innerText);
+  window.cancelAnimationFrame( requestID );
+  return 0;
+};
+
 
 startGame();
