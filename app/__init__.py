@@ -171,6 +171,8 @@ def save_streak():
 
 @app.route("/game2")
 def game2():
+    if 'username' in session:
+        return render_template("game2.html", logged_in = True)
     return render_template("game2.html")
 
 @app.route("/getGameInfo2")
