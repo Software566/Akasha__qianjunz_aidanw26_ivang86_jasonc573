@@ -112,7 +112,7 @@ def logout():
 def game():
     if 'username' in session:
         session.pop('streak', None)  # Reset the streak
-        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'], streak=session['streak'])
+        return render_template("game.html", timerOn = False, logged_in = True, username = session['username'])
     return render_template("game.html")
 
 
