@@ -25,32 +25,11 @@
           {% endif %}
         </ul>
     </nav>
-    <!--
-    <div class="game-container">
-      <div class = "button-grid">
-        <div class = "button-row">
-        {% for i in mainData %}
-        <button id= button{{i["name"]}} class="word-button" onclick='makeGuess("{{i['name']}}")'>
-            <img id= image{{i["name"]}} src="https://res.cloudinary.com/dd8qeiddj/image/upload/f_auto,q_auto/jor4nu520m4k7xf9z1v1" alt="Word 1" style="margin-bottom: 20px;">
-            <div id={{i["name"]}}></div>
-            <div id=worth{{i["name"]}} class="search-count"></div>
-        </button>
-        {% if mainData.index(i) == 2 %}
-        </div>
-        <br>
-        <div class = "button-row">
-        {% endif %}
-        {% endfor %}
-        </div>
-      </div>
-    </div>
-  -->
-    <div id="topicsContainer">
-    <div class = "center">
-    <form action={{url_for("game2")}}>
-      <button class="button-30" role="button" type = "submit"> Next Question</button>
-    </form>
-    </div>
+    
+    <div id="game-container" class="game-container"></div>
+
+    <div id="streak" style="color: white; font-size: 1.5em; margin: 20px;">Streak: 0</div>
+
     <script src="../static/js/game2.js"></script>
 </body>
 </html>

@@ -154,86 +154,27 @@ def save_streak():
     return jsonify({'success': True})
 
 #----------------------------------------------------------------------------------------------------------------
-'''
-x = "goofy setup" #ignore this please its goofy
 
-@app.route("/game2")
-def game2():
-    global x
-    x = getGameInfo2()
-    return render_template("game2.html", mainData = x)
-
-@app.route("/getGameInfo2")
-def getGameInfo2():
-    result = api_modules.randomCategory('celebrity')
-
-    if not result or not isinstance(result, list): # Quick error handling
-        print("No data available or result is not a list.")
-        return
-
-    randomAmount = random.randint(3, 7) # Make it actually random
-
-    information = []
-    for i in result:
-        for k in range(randomAmount):
-            imputed = False
-            if (random.randint(0, 29) == 5):
-                imputed = True
-                information.append({
-                    'name': i['name'].replace(" ", "_"),
-                    'net_worth': i['net_worth']
-                    }
-                )
-            if imputed:
-                break
-    #print(information)
-    while (len(information) > 5):
-        information.pop()
-    #print(information)
-    return information
-
-@app.route("/getGameInfoJson")
-def getGameInfoJson():
-    return jsonify(x)
-
-def indexof(list, value):
-    try:
-        return list.index(value)
-    except ValueError:
-        return -1
-'''
 @app.route("/game2")
 def game2():
     return render_template("game2.html")
 
-@app.route("/getGameInfoJson")
+@app.route("/getGameInfo2")
 def getGameInfoJson():
-    result = api_modules.randomCategory('celebrity')
+    randomAmount = random.randint(1, 2)
 
-    if not result or not isinstance(result, list): # Quick error handling
-        print("No data available or result is not a list.")
-        return
+    x = {}
 
-    randomAmount = random.randint(3, 7) # Make it actually random
+    for i in range(1, randomAmount + 1):
+        word = api_modules.randomTopic()
+        searchCount = api_modules.getSearchVolume(word)
+        gif = api_modules.getGif(word)
 
-    information = []
-    for i in result:
-        for k in range(randomAmount):
-            imputed = False
-            if (random.randint(0, 29) == 5):
-                imputed = True
-                information.append({
-                    'name': i['name'].replace(" ", "_"),
-                    'net_worth': i['net_worth']
-                    }
-                )
-            if imputed:
-                break
-    #print(information)
-    while (len(information) > 5):
-        information.pop()
-    #print(information)
-    return jsonify(information)
+        x[f'word{i}'] = word
+        x[f'count{i}'] = searchCount
+        x[f'gif{i}'] = gif
+    
+    return jsonify(x)
 
 
 #----------------------------------------------------------------------------------------------------------------
