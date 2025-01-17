@@ -4,6 +4,9 @@ aidanW -- 2025-01-06 21:44
 aidanW -- 2025-01-07 22:43
 * Added design document V0
 
+qianjunZ -- 2025-01-07 11:43
+* Made the readme and requirements
+
 aidanW -- 2025-01-08 10:43
 * Added project file skeleton
 
@@ -17,12 +20,18 @@ aidanW -- 2025-01-09 00:27
 jasonC -- 2025-01-10 10:58
 * Created DB functions for user logins
 
+qianjunZ -- 2025-01-10 11:00
+* Created the goofy signup page
+
 jasonC -- 2025-01-12 11:23
 * Added DB functions to add & retrieve all/user-specific game scores
 * Updated and fixed problems with existing functions for logins
 
 aidanW -- 2025-01-12 23:18
 * Completed basic code and styling for main game
+
+qianjunZ -- 2025-01-12 18:18
+* Finished authy login and signup, waiting on DB to finish
 
 ivanG -- 2025-01-13 1:54
 * did some very minor work on java script stuff that will be implemented
@@ -31,6 +40,10 @@ ivanG -- 2025-01-13 1:54
 jasonC -- 2025-01-13 11:01
 * Fixed errors with creating DB tables
 * Fixed landing page for better UI
+
+qianjunZ -- 2025-01-13 11:21
+* Started writing code for n buttons
+* Started working on the API and pulling data from it
 
 aidanW -- 2025-01-13 22:35
 * Added styling for main game and nav bars
@@ -49,6 +62,9 @@ ivanG -- 2025-01-14 11:08
 * found a way to redirecta user to a different page using javascript
 * read over current game code to later implement high score, and consequences based on game decision
 
+qianjunZ -- 2025-01-14 11:20
+* Finished the finding words and values
+
 aidanW -- 2025-01-15 00:03
 * Made celebrity API work
 
@@ -64,6 +80,12 @@ ivanG -- 2025-01-15-11:01
 
 jasonC -- 2025-01-15 11:02
 * Worked on adding a modal to select gamemodes
+
+qianjunz -- 2025-01-15 11:50
+* Started with nothing learned how to use jinja while centering a div
+* Finished game2
+* Made it so every 3 buttons there is a newline so it looks good
+* Alot of CSS and styling
 
 aidanW -- 2025-01-15 23:45
 * Created template and css for tournament game mode
@@ -87,6 +109,9 @@ aidanW -- 2025-01-16 11:01
 
 ivanG -- 2025-01-16 11:01
 * tried to implement count-up animation on the game pages, but not working tbh
+
+qianjunz -- 2025-01-16 11:21
+* working on moving my python and jinja code over to javascript
 
 ivanG -- 2025-01-17 00:15
 * fixed and implemented time trial mode
