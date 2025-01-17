@@ -23,29 +23,10 @@ def create_database():
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS game_scores (
                     username TEXT,
-                    timestamp TEXT NOT NULL,
-                    position INTEGER,
+                    best_score INTEGER,
                     FOREIGN KEY (username) REFERENCES logins(username) ON DELETE CASCADE
                 );
                 ''')
-
-    cursor.execute('''
-                CREATE TABLE IF NOT EXISTS sum_tournament_data (
-                    id TEXT NOT NULL UNIQUE PRIMARY KEY,
-                    description TEXT,
-                    contributor TEXT,
-                    FOREIGN KEY (contributor) REFERENCES logins(username) ON DELETE CASCADE
-        );
-    ''')
-
-    cursor.execute('''
-                CREATE TABLE IF NOT EXISTS individual_tournament_data (
-                    tournament_id TEXT NOT NULL,
-                    name TEXT NOT NULL,
-                    image TEXT NOT NULL,
-                    FOREIGN KEY (tournament_id) REFERENCES sum_tournament_data(id) ON DELETE CASCADE
-        );
-    ''')
     conn.commit()
     conn.close()
 
@@ -79,10 +60,18 @@ def login_user(username, password):
         return "Invalid username or password"
 
 # Add a new user to the database
-def add_game_score(username, timestamp, position):
+def add_game_score(username, score):
     conn = database_connect()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO game_scores (username, timestamp, position) VALUES (?, ?, ?)", (username, timestamp, position,))
+    cursor.execute("INSERT INTO game_scores (username, best_score) VALUES (?, ?)", (username, score,))
+    conn.commit()
+    conn.close()
+    
+# Update a user's game score
+def update_game_score(username, new_score): 
+    conn = database_connect()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE game_scores SET best_score = ? WHERE username = ?", (new_score, username,))
     conn.commit()
     conn.close()
 
