@@ -1,5 +1,11 @@
 # API KEYS
 
+## APINinja
+
+**API Key Status:** Uploaded and Active
+
+**Owner:** Aidan Wong
+
 ## SerpAPI
 
 **API Key Status:** Uploaded and Active
@@ -9,6 +15,6 @@
 
 ## GiphyAPI
 
-**API Key Status:** Not Uploaded but Active
+**API Key Status:** Uploaded and Active
 
 **Owner:** Aidan Wong
