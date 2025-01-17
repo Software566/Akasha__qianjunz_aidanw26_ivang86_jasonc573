@@ -108,6 +108,7 @@ function makeGuess(guess) {
 let start = -1;
 var timer = function()
 {
+  // console.log("TIMER HERE");
   if(start == -1){
     start = performance.now();
   }
@@ -133,6 +134,7 @@ var timer = function()
 
 var stopIt = function()
 {
+  start = -1;
   console.log( requestID );
   window.cancelAnimationFrame( requestID );
 };
