@@ -47,7 +47,7 @@ async function startGame() {
             button.innerHTML = `
                 <img id="gif${wordIndex}" alt="Word ${wordIndex}" style="margin-bottom: 20px;">
                 <div id="word${wordIndex}">${gameData[key]}</div>
-                <div id="count${wordIndex}" class="search-count">Loading</div>
+                <div id="count${wordIndex}" class="search-count" style="display: none;">Loading</div>
             `;
             button.addEventListener('click', () => makeGuess(wordIndex));
 
@@ -61,7 +61,7 @@ async function startGame() {
     // Initialize correct answer logic
     const wordCounts = Object.keys(gameData)
     .filter(key => key.startsWith('count'))
-    .map(key => parseInt(gameData[key], 10));
+    .map(key => gameData[key], 10);
     console.log(wordCounts);
 
     // Find the maximum value in wordCounts
@@ -91,7 +91,8 @@ async function startGame() {
 
 
 function makeGuess(guessIndex) {
-    const correct = guessIndex === window.correctAnswer;
+    const correct = guessIndex == window.correctAnswer;
+    console.log(correct)
 
     // Loop through dynamically based on the number of words
     const gameContainer = document.getElementById('game-container');
@@ -99,15 +100,23 @@ function makeGuess(guessIndex) {
 
     Array.from(buttons).forEach((button, index) => {
         const buttonIndex = index + 1; // Convert to 1-based index
+
+        const countElement = button.querySelector('.search-count');
+        countElement.style.display = 'block';  // Make the search count visible
+        
+        countElement.innerText = `Searches: ${window.searchCounts[`word${buttonIndex}`]}`;
+
         button.classList.add(
-            guessIndex === buttonIndex
+        guessIndex === buttonIndex
                 ? (correct ? 'correct' : 'wrong')
                 : (window.correctAnswer === buttonIndex ? 'correct' : 'wrong')
         );
+        countElement.style.display = 'block';
     });
 
     // Update streak based on the correctness of the guess
     if (correct) {
+        console.log("made it here")
         let streak = parseInt(sessionStorage.getItem('streak')) || 0;
         streak++;
         sessionStorage.setItem('streak', streak.toString());

@@ -175,7 +175,7 @@ def game2():
 
 @app.route("/getGameInfo2")
 def getGameInfoJson():
-    randomAmount = random.randint(1, 2)
+    randomAmount = random.randint(3, 7)
 
     x = {}
 
