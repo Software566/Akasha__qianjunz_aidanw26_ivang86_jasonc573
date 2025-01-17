@@ -145,6 +145,12 @@ def getGameInfo():
 @app.route("/defeat")
 def defeat():
     streak = session.get('streak', 0)  # Get the streak from session or default to 0
+    best_score = db_modules.get_specific_game_scores()
+    print(streak)
+    print(best_score)
+    if streak > best_score[0][2]:
+        db_modules.update_game_score(session['username'], streak)
+        print("score updated")
     return render_template("defeat.html", streak=streak)
 
 @app.route('/save_streak', methods=['POST'])
