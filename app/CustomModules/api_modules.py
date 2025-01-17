@@ -15,7 +15,9 @@ def getKey(apiName):
     if apiName == "serpAPI":
         apiFile = "key_serpAPI.txt"
     elif apiName == "giphy":
-        apiFile = "key_giphyapi.txt"
+        apiFile = "key_giphy.txt"
+    elif apiName == "apininja":
+        apiFile = "key_apininja.txt"
     else:
         return "INVALID API NAME"
 
@@ -52,7 +54,7 @@ def getGif(tag):
         with urllib.request.urlopen(request) as response:
             data = json.loads(response.read().decode('utf-8'))
             if 'data' in data and data['data']:
-                return {"link": data['data']['images']["original"]["url"], "title": data['data']['title']}
+                return data['data']['images']["original"]["url"]
             else:
                 return "No gif found"
 
@@ -127,13 +129,18 @@ def getSearchVolume(keyword):
 ############################# Ninjas #############################
 
 def randomCategory(category):
-    APIKEY = 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'
+    APIKEY = getKey("apininja")
 
     if category == "celebrity":
         category = "celebrity?min_net_worth=1"
+    elif category == "cats":
+        category = "cats?min_life_expectancy=1"
+    elif category == "dogs":
+        category = "dogs?min_life_expectancy=1"
+
 
     url = f"https://api.api-ninjas.com/v1/{category}"
-    headers = {'User-Agent': 'Mozilla/5.0', 'X-Api-KEY': 'I28ZXdDP83hKcqoW4oLHwg==fhzOhyFF5adCi1zP'}
+    headers = {'User-Agent': 'Mozilla/5.0', 'X-Api-KEY': APIKEY}
     request = urllib.request.Request(url, headers=headers)
     print(url)
 
@@ -143,6 +150,38 @@ def randomCategory(category):
             if data:
                 return data
 
+
+    except Exception as e:
+        print (f"Exception occured: {e}")
+        return 403
+
+def randomTopic():
+    APIKEY = getKey("apininja")
+
+    possibleCategories = ["celebrity", "cats", "dogs", "word"]
+
+    category = possibleCategories[random.randint(0, 3)]
+
+    if category == "celebrity":
+        backCategory = "celebrity?min_net_worth=1"
+    elif category == "cats":
+        backCategory = "cats?min_life_expectancy=1"
+    elif category == "dogs":
+        backCategory = "dogs?min_life_expectancy=1"
+    elif category == "word":
+        return getRandomSearch()
+
+
+    url = f"https://api.api-ninjas.com/v1/{backCategory}"
+    headers = {'User-Agent': 'Mozilla/5.0', 'X-Api-KEY': APIKEY}
+    request = urllib.request.Request(url, headers=headers)
+    print(url)
+
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            if data:
+                return data[random.randint(0, len(data) - 1)]["name"]
 
     except Exception as e:
         print (f"Exception occured: {e}")

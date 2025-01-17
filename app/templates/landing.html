@@ -39,34 +39,29 @@ Time Spent: 4
         </div>
         -->
         <!-- Button trigger modal -->
-        <button type="button" class="nav_buttons btn" data-bs-toggle="modal" data-bs-target="#gameModal">Games</button>
+        <button type="button" class="nav_buttons btn" data-bs-toggle="modal" data-bs-target="#gameModal">Play</button>
 
         <!-- Modal -->
         <div class="modal fade" id="gameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h1 class="modal-title w-100" id="modal-title" style="transform: translateX(1.55%);">Select Game</h5>
+                    <h1 class="modal-title w-100" id="modal-title" style="transform: translateX(1.55%);">Game Select</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div><button class="nav_buttons btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModes" aria-expanded="false" aria-controls="collapseModes">Modes</button></div>
-                    <div class="collapse" id="collapseModes" style="margin-bottom: 20px;">
                         <div>
-                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Classic</a></button>
+                            <button class="nav_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Classic</a></button>
                         </div>
                         <div>
-                            <button class="mode_buttons btn"><a href="{{url_for('timed')}}" style="color: black; text-decoration: none;">Time Trial</a></button>
+                            <button class="nav_buttons btn"><a href="{{url_for('timed')}}" style="color: black; text-decoration: none;">Time Trial</a></button>
                         </div>
                         <div>
-                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Mania</a></button>
+                            <button class="nav_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Mania</a></button>
                         </div>
                         <div>
-                            <button class="mode_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Lower or Higher</a></button>
+                            <button class="nav_buttons btn"><a href="{{url_for('game')}}" style="color: black; text-decoration: none;">Lower or Higher</a></button>
                         </div>
-                    </div>
-
-                    <div><button type="button" class="nav_buttons btn"><a href="{{url_for('thub')}}" style="color: black; text-decoration: none;">Tournament</a></button></div>
                 </div>
             </div>
             </div>
