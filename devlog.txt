@@ -87,3 +87,7 @@ aidanW -- 2025-01-16 11:01
 
 ivanG -- 2025-01-16 11:01
 * tried to implement count-up animation on the game pages, but not working tbh
+
+ivanG -- 2025-01-17 00:15
+* fixed and implemented time trial mode
+* made it so timer waits for content to load, and stops upon guess
