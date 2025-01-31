@@ -172,7 +172,7 @@ def randomTopic():
         return getRandomSearch()
 
 
-    url = f"https://api.api-ninjas.com/v1/{backCategory}"
+    url = f"https://api.api-ninjas.com/v1/commodityprice?name=platinum/{backCategory}"
     headers = {'User-Agent': 'Mozilla/5.0', 'X-Api-KEY': APIKEY}
     request = urllib.request.Request(url, headers=headers)
     print(url)
